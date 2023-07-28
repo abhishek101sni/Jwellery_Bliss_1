@@ -30,7 +30,7 @@ const DrawerContent = (props) => {
 
                     <DrawerItem
                         label="View Profile"
-                        labelStyle={{ color: 'black',  fontSize: textScale(12), textAlign: "center", marginLeft: moderateScale(27) }}
+                        labelStyle={{ color: 'black', textDecorationLine: 'underline', fontSize: textScale(12), textAlign: "center", marginLeft: moderateScale(27) }}
                         onPress={() => {
                             props.navigation.navigate("viewprofile");
                         }}
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
         fontWeight: "500",
         textAlign: "center",
         fontSize: textScale(20),
-        fontFamily:"Poppins-Medium"
+        fontFamily: "Poppins-Medium"
     },
     bottomDrawerSection: {
         marginTop: moderateScaleVertical(10),

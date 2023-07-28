@@ -14,7 +14,7 @@ const Cart = ({ navigation }) => {
 
     function showMsg() {
         showMessage({
-            message: "Product added successfully",
+            message: "Order Placed",
             type: "success",
         })
     }
