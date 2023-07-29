@@ -1,5 +1,5 @@
 import { View, Text, Dimensions, ScrollView, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native'
-import React, { useContext,useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import MarqueeView from "react-native-marquee-view";
 import { useNavigation } from '@react-navigation/native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
@@ -7,6 +7,7 @@ import { AuthContext } from '../AuthContext';
 import { height, moderateScale, moderateScaleVertical, textScale } from '../../utils/responsive'
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserDetailsActionCreator } from '../../redux/Formdetails/formDetails.action-creator';
+import axios from 'axios';
 
 const WelcomeScreen = () => {
     const { logout, userToken, userInfo } = useContext(AuthContext);
@@ -14,7 +15,7 @@ const WelcomeScreen = () => {
     const { payload: user } = userInfo;
     const check = () => {
         console.log('hello checked');
-        console.log(`userrrrrrrrrrrrr`,user)
+        console.log(`userrrrrrrrrrrrr`, user)
     };
     const userDetails = useSelector((state) => state.userDetailsData);
     const dispatch = useDispatch();
@@ -62,11 +63,29 @@ const WelcomeScreen = () => {
     // const check = () => {
     //     console.log("hello checked");
     // }
+    const API_KEY = 'goldapi-fl6arlkm9asg2-io'
+    const BASE_URL = 'https://www.goldapi.io/api'
+    const GRAMS_PER_OUNCE = 31.1034768;
+
+    const getGoldPrice = async () => {
+        const [goldPrice, setGoldPrice] = useState(null);
+        try {
+            const response = await axios.get(`${BASE_URL}/XAU/INR`, {
+                headers: {
+                    'x-access-token': API_KEY,
+                },
+            });
+            const priceInTroyOunces = response.data.price_gram_24k;
+            console.log(priceInTroyOunces);
+        } catch (error) {
+            console.error('Error fetching gold price:', error);
+        }
+    }
+    getGoldPrice();
 
     return (
         <ImageBackground style={{ flex: 1 }} source={require("../../assets/background-image2.png")}>
             <ScrollView>
-
                 <View style={{ top: height - 938, }}>
                     <Image source={require("../../assets/GOLDEN-STRIP.png")} style={styles.goldenStrip} />
                 </View>
@@ -75,13 +94,13 @@ const WelcomeScreen = () => {
                     <ImageBackground style={styles.MainBackGroundImage} imageStyle={{ borderRadius: 40 }} source={require("../../assets/texture.png")} >
 
                         <View style={styles.GoldenBackGroundImage}>
-                            
+
                             {/* <TouchableOpacity>
                                 <Image source={require("../../assets/notification.png")} style={styles.NotificationBell} />
                             </TouchableOpacity> */}
                         </View>
                         <View style={{ marginLeft: 30 }}>
-                        <Text style={styles.WelcomeText}>Welcome,</Text>
+                            <Text style={styles.WelcomeText}>Welcome,</Text>
                             <Text style={styles.UserName}>{userInfo?.name}</Text>
                             <Text style={styles.UserBrandName}>{userDetails?.brandName}</Text>
                             <View style={{ marginTop: 20 }}>
@@ -96,7 +115,7 @@ const WelcomeScreen = () => {
                 <MarqueeView>
                     <View style={styles.MarqueeAlignment}>
                         <Text style={{ color: "#404040" }}>
-                            995 rat25: Rs 45,000 | Fine rate: red | Gold MCX: Rs 50,000 995
+                            Price 18K:$  | Fine rate: red | Gold MCX: Rs 50,000 995
                             rate: Rs 45,000 | Fine rate: rs720000 | Gold MCX: Rs 50,000
                         </Text>
                     </View>
@@ -215,7 +234,7 @@ const styles = StyleSheet.create({
         color: "black",
         fontSize: textScale(20),
         fontWeight: "400",
-        marginLeft:moderateScale(0)
+        marginLeft: moderateScale(0)
     },
     UserName: {
         color: "black",
@@ -301,7 +320,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-around",
         marginHorizontal: moderateScale(140),
-        
+
     },
     imgsize1: {
         width: moderateScale(52),
@@ -322,11 +341,11 @@ const styles = StyleSheet.create({
     imgsize5: {
         width: moderateScale(55),
         height: moderateScaleVertical(35),
-        marginBottom:moderateScaleVertical(40)
+        marginBottom: moderateScaleVertical(40)
     },
     imgsize6: {
         width: moderateScale(54),
         height: moderateScaleVertical(30),
-        marginBottom:moderateScaleVertical(40)
+        marginBottom: moderateScaleVertical(40)
     },
 });    
