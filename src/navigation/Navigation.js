@@ -77,6 +77,7 @@ import SolitaireRopeCZ from '../Screens/Categories/SubCategories/CastingCzJwelle
 import TopsCZ from '../Screens/Categories/SubCategories/CastingCzJwellery/TopsCZ';
 import GentsRingsCZ from '../Screens/Categories/SubCategories/CastingCzJwellery/GentsRingsCZ';
 import AboutUs from '../Screens/DrawerScreens/AboutUs';
+// import WastageChart from '../Screens/WastageChart';
 import WastageChart from '../Screens/WastageChart';
 
 const Stack = createNativeStackNavigator();
@@ -253,17 +254,6 @@ const Navigation = () => {
                             }} />
 
                         <Stack.Screen
-                            name="wastagechart"
-                            component={WastageChart}
-                            options={{
-                                title: 'Wastage chart',
-                                headerShown: true,
-                                headerStyle: { backgroundColor: 'black' },
-                                headerTintColor: '#bc9954',
-                                headerTitleStyle: { color: '#bc9954' }
-                            }} />
-
-                        <Stack.Screen
                             name="welcomescreen"
                             component={WelcomeScreen}
                             options={{
@@ -272,6 +262,7 @@ const Navigation = () => {
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
+                            
                         <Stack.Screen
                             name="ServiceAvailable"
                             component={ServiceAvailable}

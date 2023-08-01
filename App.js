@@ -6,6 +6,7 @@ import "react-native-gesture-handler";
 import WaitSplash from './src/Screens/WaitSplash'
 import FlashMessage from 'react-native-flash-message'
 import { StyleSheet } from 'react-native'
+import { moderateScale, moderateScaleVertical, textScale } from './src/utils/responsive';
 const App = () => {
   const { isLoading } = useContext(AuthContext);
 
@@ -23,7 +24,7 @@ export default () => {
     <NavigationContainer >
       <AuthProvider>
         <App />
-        <FlashMessage position="top" style={styles.FlashMessage} titleStyle={{ fontWeight: 'bold', fontSize: 20, color: "black", justifyContent: "center", alignItems: "center" }} />
+        <FlashMessage position="top" style={styles.FlashMessage} titleStyle={{ fontWeight: 'bold', fontSize: 15, color: "black", justifyContent: "center", alignItems: "center" }} />
       </AuthProvider>
     </NavigationContainer>
   );
@@ -34,14 +35,10 @@ const styles = StyleSheet.create({
   FlashMessage: {
     backgroundColor: "#eec06b",
     alignItems: "center",
-    height: 100,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    // justifyContent: "center",
-    // alignItems: "center",
-    // alignSelf: "center",
-    // marginTop:40,
-    fontSize: 20,
+    height: moderateScaleVertical(70),
+    borderBottomLeftRadius: moderateScale(20),
+    borderBottomRightRadius: moderateScale(20),
+    fontSize: textScale(14),
     fontFamily: "Poppins-Medium",
     color: "black"
   }

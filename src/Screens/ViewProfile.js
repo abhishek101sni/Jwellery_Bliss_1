@@ -72,7 +72,7 @@ const ViewProfile = () => {
                         borderRadius: 10,
                     }}>
 
-                        <Text style={{ fontSize: textScale(15), color: "black", fontWeight: "bold", textAlign: "left", justifyContent: "flex-start" }}>Mobile No : {userDetails?.mobile}</Text>
+                        <Text style={{ fontSize: textScale(15), color: "black", fontWeight: "bold", textAlign: "left", justifyContent: "flex-start" }}>Mobile No : {userDetails?.contactNo}</Text>
                     </View>
 
                     <View style={{
