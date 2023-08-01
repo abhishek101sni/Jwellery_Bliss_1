@@ -5,10 +5,39 @@ import { height, moderateScale, moderateScaleVertical, textScale } from '../../u
 
 
 const OurProduct = ({ navigation }) => {
+    const [data, setData] = useState([]);
+    // const dispatch = useDispatch();
+
+    const getAPIDATA = async () => {
+        const url = "https://bliss-app-backend-production.up.railway.app/api/products/categories";
+        let result = await fetch(url);
+        result = await result.json();
+        setData(result);
+    }
+
+    useEffect(() => {
+        getAPIDATA();
+    }, []);
+
 
     return (
         <>
-            <View style={{ backgroundColor: "black", flex: 1 }}>
+            <FlatList contentContainerStyle={{ alignItems: "center" }}
+                data={data}
+                numColumns={2}
+                renderItem={({ item, index }) => <View key={index} style={styles.View1}>
+
+                    <View style={styles.View2}>
+                        <TouchableOpacity >
+                            <View style={styles.View3}>
+                                <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
+                                <Text style={styles.View5}>{item?.category}</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>}
+            />
+            {/* <View style={{ backgroundColor: "black", flex: 1 }}>
                 <ScrollView>
                     <View style={styles.alignment}>
                         <View style={styles.View2}>
@@ -49,7 +78,7 @@ const OurProduct = ({ navigation }) => {
                         </View>
                     </View>
                 </ScrollView>
-            </View>
+            </View> */}
         </>
     )
 }

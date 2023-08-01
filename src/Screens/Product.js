@@ -11,7 +11,7 @@ const Product = ({ navigation }) => {
     const dispatch = useDispatch();
 
     const getAPIDATA = async () => {
-        const url = "https://jwells-bliss-deploy2.up.railway.app/api/products/";
+        const url = "https://bliss-app-backend-dev-development.up.railway.app/api/products";
         let result = await fetch(url);
         result = await result.json();
         setData(result);

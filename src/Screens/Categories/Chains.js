@@ -2,13 +2,58 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { height, moderateScale, moderateScaleVertical, textScale } from '../../utils/responsive'
-
+import axios from 'axios';
 
 const Chains = ({ navigation }) => {
+  const [category, setcategory] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  // const getCategory = async () => {
+  //   const url = "http://localhost:5009/api/products?category=chains"
+  //   let result = await fetch(url);
+  //   result = await result.json();
+  //   setcategory(result);
+  // }
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('http://localhost:5009/api/products', {
+        params: { category: 'chains' },
+      });
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
 
   return (
     <>
-      <View style={{ backgroundColor: "black", flex: 1 }}>
+      <FlatList
+        data={products}
+        renderItem={({ item }) => <Text>{item.name}</Text>}
+        keyExtractor={(item) => item.id.toString()}
+      />
+      {/* <FlatList contentContainerStyle={{ alignItems: "center" }}
+        data={category}
+        numColumns={2}
+        renderItem={({ item, index }) => <View key={index} style={styles.View1}>
+
+          <View style={styles.View2}>
+            <TouchableOpacity onPress={() => handlePress(item)}>
+              <View style={styles.View3}>
+                <Image style={styles.ImageView} source={{ uri: item.images[0] }} />
+                <Text style={styles.View5}>{item?.name}</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+        </View>}
+      /> */}
+      {/* <View style={{ backgroundColor: "black", flex: 1 }}>
         <ScrollView>
           <View style={styles.alignment}>
             <View style={styles.View2}>
@@ -117,8 +162,8 @@ const Chains = ({ navigation }) => {
                   <Text style={styles.View5}>MADRASI CHAINS</Text>
                 </View>
               </TouchableOpacity>
-            </View>
-            {/* <TouchableOpacity>
+            </View> */}
+      {/* <TouchableOpacity>
               <View style={styles.View2}>
                 <View style={styles.View3}>
                   <Image style={styles.ImageView} source={require("../../assets/GWT-270.jpg")} />
@@ -126,10 +171,10 @@ const Chains = ({ navigation }) => {
                 </View>
               </View>
             </TouchableOpacity> */}
-          </View>
+      {/* </View>
 
         </ScrollView>
-      </View>
+      </View> */}
     </>
   )
 }

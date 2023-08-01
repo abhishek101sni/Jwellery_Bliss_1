@@ -234,6 +234,24 @@ const ViewProfile = () => {
                         borderColor: "black",
                         borderRadius: 10,
                     }}>
+                        <Text style={{ fontSize: textScale(15), color: "black", fontWeight: "bold", textAlign: "left", justifyContent: "flex-start" }}>GST No. : {userDetails.gstNo}</Text>
+                        <Text style={{ fontSize: textScale(15) }}></Text>
+                    </View>
+
+                    <View style={{
+                        alignSelf: "center",
+                        flexDirection: "row",
+                        backgroundColor: "white",
+                        width: "90%",
+                        padding: 10,
+                        paddingBottom: moderateScaleVertical(10),
+                        shadowOpacity: 80,
+                        elevation: 15,
+                        marginTop: moderateScaleVertical(20),
+                        borderWidth: 1,
+                        borderColor: "black",
+                        borderRadius: 10,
+                    }}>
                         <Text style={{ fontSize: textScale(15), color: "black", fontWeight: "bold", textAlign: "left", justifyContent: "flex-start" }}>Store person name : {userDetails.storePersonName}</Text>
                         <Text style={{ fontSize: textScale(15) }}></Text>
                     </View>
