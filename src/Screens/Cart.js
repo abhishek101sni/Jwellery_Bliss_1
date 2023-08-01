@@ -14,7 +14,7 @@ const Cart = ({ navigation }) => {
 
     function showMsg() {
         showMessage({
-            message: "Order Placed",
+            message: "Order Placed Successfully",
             type: "success",
         })
     }
@@ -142,7 +142,7 @@ const Cart = ({ navigation }) => {
                                         </ImageBackground>
                                     </TouchableOpacity>
                                 </View>
-                               
+
 
                             </View>
                         </View>
@@ -210,25 +210,25 @@ export default Cart
 
 const styles = StyleSheet.create({
     goldenback: {
-        width: 300,
-        marginTop: 300,
+        width: moderateScale(300),
+        marginTop: moderateScaleVertical(300),
         alignItems: 'center',
         padding: 40,
-        width: 350,
-        height: 150,
-        marginLeft: 40,
+        width: moderateScale(350),
+        height: moderateScaleVertical(150),
+        marginLeft: moderateScale(40),
     },
     EmptyCart: {
-        width: 300,
-        marginTop: 300,
+        width: moderateScale(300),
+        marginTop: moderateScaleVertical(300),
         alignItems: 'center',
         padding: 40,
-        width: 350,
-        height: 300,
-        marginLeft: 40,
+        width: moderateScale(350),
+        height: moderateScaleVertical(300),
+        marginLeft: moderateScale(40),
     },
     goldenStrip: {
-        borderWidth: 3,
+        borderWidth: moderateScale(3),
         width: moderateScale(1100),
         alignSelf: "center"
     },
@@ -244,42 +244,42 @@ const styles = StyleSheet.create({
     signupbutton: {
         backgroundColor: "black",
         padding: 15,
-        marginTop: 30,
+        marginTop: moderateScaleVertical(30),
         alignItems: "center",
         borderRadius: 80,
-        width: 240,
-        height: 70,
+        width: moderateScale(240),
+        height: moderateScaleVertical(70),
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 60,
+        marginLeft: moderateScale(60),
     },
     imageSize: {
         // marginTop: 200,
-        width: 200,
-        height: 200,
+        width: moderateScale(200),
+        height: moderateScaleVertical(200),
         resizeMode: "cover",
         alignItems: "center",
         // marginLeft: 40
     },
 
     signuptext: {
-        fontSize: 20,
+        fontSize: textScale(20),
         color: "#eec06b",
     },
     MOdalloginbutton: {
         backgroundColor: "black",
         padding: 15,
-        marginTop: 10,
+        marginTop: moderateScaleVertical(10),
         alignItems: "center",
         borderRadius: 10,
-        width: 270,
-        height: 50,
+        width: moderateScale(270),
+        height: moderateScale(50),
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 60,
+        marginLeft: moderateScale(60),
     },
     MOdallogintext: {
-        fontSize: 15,
+        fontSize: textScale(15),
         color: "#eec06b",
     },
     View1: {
@@ -296,24 +296,24 @@ const styles = StyleSheet.create({
     },
     dynamicImageStyle: {
         height: moderateScaleVertical(120),
-        width: 120,
+        width: moderateScale(120),
         backgroundColor: 'black',
-        borderTopLeftRadius: 10,
-        borderBottomLeftRadius: 10,
+        borderTopLeftRadius: moderateScale(10),
+        borderBottomLeftRadius: moderateScale(10),
     },
     PriceAndButtonAlignment: {
         flexDirection: "column"
     },
     CartItemName: {
-        marginTop: 9,
+        marginTop: moderateScaleVertical(9),
         color: 'black',
-        marginLeft: 10,
+        marginLeft: moderateScale(10),
         fontWeight: 'bold',
     },
     CartItemPrice: {
         color: 'black',
-        marginBottom: 27,
-        marginLeft: 10
+        marginBottom: moderateScaleVertical(27),
+        marginLeft: moderateScale(10),
     },
     alignment: {
         flexDirection: "colomn",
@@ -323,8 +323,8 @@ const styles = StyleSheet.create({
 
     View6: {
         flexDirection: 'row',
-        width: 50,
-        marginLeft: 130,
+        width: moderateScale(50),
+        marginLeft: moderateScale(130),
     },
     View7: {
         backgroundColor: 'black',
@@ -332,43 +332,43 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         flexDirection: "row",
         justifyContent: "space-around",
-        marginHorizontal: -120,
+        marginHorizontal: moderateScale(-120),
     },
     View8: {
-        marginRight: 5
+        marginRight: moderateScale(5)
     },
     View9: {
         color: 'white',
-        fontSize: 20
+        fontSize: textScale(20),
     },
     View99: {
         color: 'white',
-        fontSize: 17
+        fontSize: textScale(17),
     },
     View999: {
         color: 'white',
-        fontSize: 20
+        fontSize: textScale(20)
     },
     View10: {
         flexDirection: 'column',
         // margin: 50
-        marginHorizontal: 30,
-        marginTop: 40,
+        marginHorizontal: moderateScale(30),
+        marginTop: moderateScaleVertical(40),
     },
     View11: {
-        marginBottom: 10
+        marginBottom: moderateScaleVertical(10),
     },
     View12: {
         fontWeight: 'bold',
         color: 'black',
-        borderBottomWidth: 1,
-        marginBottom: 10,
+        borderBottomWidth: moderateScale(1),
+        marginBottom: moderateScale(10),
         padding: 5
     },
     View13:
     {
         backgroundColor: 'black',
-        marginTop: 25,
+        marginTop: moderateScaleVertical(25),
         // flexDirection: "row",
         // justifyContent: 'center',
         borderRadius: 60,
@@ -379,8 +379,8 @@ const styles = StyleSheet.create({
     View14: {
         // backgroundColor: 'black',
         padding: 10,
-        borderBottomLeftRadius: 7,
-        borderTopLeftRadius: 7,
+        borderBottomLeftRadius: moderateScale(7),
+        borderTopLeftRadius: moderateScale(7),
         width: "80%",
         color: 'white'
     },
@@ -389,17 +389,17 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         color: 'black',
         borderRadius: 5,
-        height: 30,
-        marginLeft: -10,
+        height: moderateScaleVertical(30),
+        marginLeft: moderateScale(-10),
         // marginHorizontal:1,
     },
     View16: {
         // flexDirection: 'row',
         // justifyContent: 'center',
-        marginTop: 30,
+        marginTop: moderateScaleVertical(30),
         flexDirection: "row",
         justifyContent: "space-around",
-        marginHorizontal: -10,
+        marginHorizontal: moderateScaleVertical(-10),
     },
     Button: {
         flex: 1,
@@ -407,8 +407,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     Buttons: {
-        width: 200,
-        height: 50,
+        width: moderateScale(200),
+        height: moderateScaleVertical(50),
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
@@ -421,7 +421,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         color: 'black',
         // width: '100%'
-        width: 140,
+        width: moderateScale(140),
         padding: 10,
         borderWidth: 2
     },
@@ -437,28 +437,28 @@ const styles = StyleSheet.create({
 
     // },
     modal: {
-        marginTop: 150,
+        marginTop: moderateScaleVertical(150),
         alignItems: 'center',
         backgroundColor: "black",
         // padding: 40,
         borderRadius: 40,
-        width: 120,
-        height: 40,
-        marginLeft: 40,
+        width: moderateScale(120),
+        height: moderateScaleVertical(40),
+        marginLeft: moderateScale(40),
 
     },
     modalText: {
         color: "white",
         textAlign: "center",
         padding: 20,
-        fontSize: 25,
+        fontSize: textScale(25),
     },
     orderplaced_image: {
-        width: 40,
-        height: 40,
+        width: moderateScale(40),
+        height: moderateScaleVertical(40),
         resizeMode: "cover",
         // alignItems: "center",
-        marginLeft: 20
+        marginLeft: moderateScale(20)
     },
     // View19: {
     //     backgroundColor: "#eec06b",
@@ -473,21 +473,21 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         color: '#000',
-        marginBottom: -10,
+        marginBottom: moderateScaleVertical(-10),
         borderBottomColor: 'black',
         borderBottomWidth: 1
     },
     View21: {
-        marginTop: 20
+        marginTop: moderateScaleVertical(20)
     },
     View22: {
         alignItems: 'center',
-        marginLeft: -60
+        marginLeft: moderateScale(-60)
     },
     View23: {
         flexDirection: "row",
         justifyContent: 'center',
-        marginTop: 20
+        marginTop: moderateScaleVertical(20)
     },
     View24: {
         backgroundColor: 'black',
@@ -498,51 +498,51 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     View25: {
-        marginTop: 20,
+        marginTop: moderateScaleVertical(20),
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center'
     },
     View26: {
         alignItems: 'center',
-        marginLeft: -60
+        marginLeft: moderateScale(-60)
     },
 
     TotalAlignment: {
         flexDirection: "row",
         justifyContent: "space-around",
-        marginHorizontal: -100,
+        marginHorizontal: moderateScale(-100),
     },
     TotalPaddingAlignment: {
-        marginVertical: 5,
+        marginVertical: moderateScaleVertical(5),
 
     },
     TotalSubChildAlignment: {
         textAlign: 'left',
-        fontSize: 14,
+        fontSize: textScale(14),
         fontWeight: "300",
         color: "black",
-        marginVertical: 5,
+        marginVertical: moderateScaleVertical(5),
     },
     TotalSubChildAlignment2: {
         textAlign: 'right',
-        fontSize: 14,
+        fontSize: textScale(14),
         fontWeight: "300",
         color: "black",
-        marginVertical: 5,
+        marginVertical: moderateScaleVertical(5),
     },
     TotalSubChildAlignment10: {
         fontWeight: "500",
         color: "black",
-        marginVertical: 5,
+        marginVertical: moderateScaleVertical(5),
         textAlign: 'right',
     },
     TotalSubChildAlignment20: {
         fontWeight: "500",
         color: "black",
-        marginVertical: 5,
+        marginVertical: moderateScaleVertical(5),
         textAlign: 'right',
-        marginBottom: 25,
+        marginBottom: moderateScaleVertical(25),
     },
     line: {
         width: "95%",
@@ -626,7 +626,7 @@ const styles = StyleSheet.create({
     },
     SubmitButton: {
         backgroundColor: "#eec06b",
-        // padding: 15,
+        //   padding: 15,
         marginTop: 30,
         alignItems: "center",
         borderRadius: 80,
@@ -667,12 +667,8 @@ const styles = StyleSheet.create({
     logInButtonText: {
         fontSize: textScale(10),
         color: "black",
-        // marginLeft: moderateScale(0),
-        // borderRadius: 40,
         paddingTop: moderateScaleVertical(4),
-        // paddingBottom:moderateScale(10),
         fontFamily: "Poppins-Medium",
-        // justifyContent: "center"
         fontWeight: "700"
 
     },
@@ -680,7 +676,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         // padding: moderateScale(15),
         width: moderateScale(150),
-        height: moderateScaleVertical(40),
+        height: moderateScaleVertical(30),
         justifyContent: 'center',
         marginTop: moderateScaleVertical(40),
         fontFamily: "Poppins-Medium"

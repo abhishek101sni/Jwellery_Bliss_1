@@ -1,16 +1,12 @@
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Image, ScrollView, ImageBackground } from 'react-native'
 import React from 'react'
 import { height, moderateScale, moderateScaleVertical, textScale } from '../../utils/responsive'
 
 
 const AboutUs = () => {
   return (
-    <View style={{ backgroundColor: "black", flex: 1 }}>
+    <ImageBackground style={{ flex: 1 }} source={require("../../assets/background-image2.png")}>
       <ScrollView>
-        {/* <View style={styles.AboutUsAlignment}>
-          <Text style={styles.AboutUsText}>ABOUT US</Text>
-        </View> */}
-        {/* <View style={styles.AboutUsline}></View> */}
         <View style={styles.AboutUsContentAlignment2}>
           <Text style={styles.AboutUsContent}>
 
@@ -31,7 +27,7 @@ const AboutUs = () => {
 
         </View>
       </ScrollView>
-    </View>
+    </ImageBackground>
 
   )
 }
@@ -56,7 +52,7 @@ const styles = StyleSheet.create({
   },
   AboutUsContent: {
     marginTop: moderateScaleVertical(15),
-    color: "white",
+    color: "black",
     fontFamily: "Poppins-Medium",
     marginHorizontal: 15,
     fontSize: textScale(17),

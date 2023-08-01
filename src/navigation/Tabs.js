@@ -50,7 +50,7 @@ const Tabs = () => {
                         )
                     }
                 }} />
-            <Tab.Screen name='Delivery' component={Delivery}
+            {/* <Tab.Screen name='Delivery' component={Delivery}
                 options={{
                     title: " ",
                     headerShown: false,
@@ -60,7 +60,7 @@ const Tabs = () => {
                             <Image source={require("../assets/delivery.png")} style={styles.IconSize} />
                         )
                     }
-                }} />
+                }} /> */}
         </Tab.Navigator>
     )
 }
