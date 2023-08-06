@@ -63,25 +63,25 @@ const WelcomeScreen = () => {
     // const check = () => {
     //     console.log("hello checked");
     // }
-    const API_KEY = 'goldapi-fl6arlkm9asg2-io'
-    const BASE_URL = 'https://www.goldapi.io/api'
-    const GRAMS_PER_OUNCE = 31.1034768;
+    // const API_KEY = 'goldapi-fl6arlkm9asg2-io'
+    // const BASE_URL = 'https://www.goldapi.io/api'
+    // const GRAMS_PER_OUNCE = 31.1034768;
 
-    const getGoldPrice = async () => {
-        const [goldPrice, setGoldPrice] = useState(null);
-        try {
-            const response = await axios.get(`${BASE_URL}/XAU/INR`, {
-                headers: {
-                    'x-access-token': API_KEY,
-                },
-            });
-            const priceInTroyOunces = response.data.price_gram_24k;
-            console.log(priceInTroyOunces);
-        } catch (error) {
-            console.error('Error fetching gold price:', error);
-        }
-    }
-    getGoldPrice();
+    // const getGoldPrice = async () => {
+    //     const [goldPrice, setGoldPrice] = useState(null);
+    //     try {
+    //         const response = await axios.get(`${BASE_URL}/XAU/INR`, {
+    //             headers: {
+    //                 'x-access-token': API_KEY,
+    //             },
+    //         });
+    //         const priceInTroyOunces = response.data.price_gram_24k;
+    //         console.log(priceInTroyOunces);
+    //     } catch (error) {
+    //         console.error('Error fetching gold price:', error);
+    //     }
+    // }
+    // getGoldPrice();
 
     return (
         <ImageBackground style={{ flex: 1 }} source={require("../../assets/background-image2.png")}>

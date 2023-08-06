@@ -21,7 +21,7 @@ const Chains = ({ navigation }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5009/api/products', {
+      const response = await axios.get('https://bliss-app-backend-production.up.railway.app/api/products', {
         params: { category: 'chains' },
       });
       setProducts(response.data);
@@ -32,11 +32,11 @@ const Chains = ({ navigation }) => {
 
   return (
     <>
-      <FlatList
+      {/* <FlatList
         data={products}
         renderItem={({ item }) => <Text>{item.name}</Text>}
-        keyExtractor={(item) => item.id.toString()}
-      />
+      keyExtractor={(item) => item.id.toString()}
+      /> */}
       {/* <FlatList contentContainerStyle={{ alignItems: "center" }}
         data={category}
         numColumns={2}
@@ -53,7 +53,7 @@ const Chains = ({ navigation }) => {
 
         </View>}
       /> */}
-      {/* <View style={{ backgroundColor: "black", flex: 1 }}>
+      <View style={{ backgroundColor: "black", flex: 1 }}>
         <ScrollView>
           <View style={styles.alignment}>
             <View style={styles.View2}>
@@ -162,19 +162,19 @@ const Chains = ({ navigation }) => {
                   <Text style={styles.View5}>MADRASI CHAINS</Text>
                 </View>
               </TouchableOpacity>
-            </View> */}
-      {/* <TouchableOpacity>
+            </View>
+            <TouchableOpacity>
               <View style={styles.View2}>
                 <View style={styles.View3}>
                   <Image style={styles.ImageView} source={require("../../assets/GWT-270.jpg")} />
                   <Text style={styles.View5}>SOLID NAWABI</Text>
                 </View>
               </View>
-            </TouchableOpacity> */}
-      {/* </View>
+            </TouchableOpacity>
+          </View >
 
-        </ScrollView>
-      </View> */}
+        </ScrollView >
+      </View >
     </>
   )
 }

@@ -22,13 +22,13 @@ const OurProduct = ({ navigation }) => {
 
     return (
         <>
-            <FlatList contentContainerStyle={{ alignItems: "center" }}
+            {/* <FlatList contentContainerStyle={{ alignItems: "center" }}
                 data={data}
                 numColumns={2}
                 renderItem={({ item, index }) => <View key={index} style={styles.View1}>
 
                     <View style={styles.View2}>
-                        <TouchableOpacity >
+                        <TouchableOpacity onLongPress={() => { navigation.navigate('chains') }}>
                             <View style={styles.View3}>
                                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
                                 <Text style={styles.View5}>{item?.category}</Text>
@@ -36,8 +36,8 @@ const OurProduct = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                 </View>}
-            />
-            {/* <View style={{ backgroundColor: "black", flex: 1 }}>
+            /> */}
+            <View style={{ backgroundColor: "black", flex: 1 }}>
                 <ScrollView>
                     <View style={styles.alignment}>
                         <View style={styles.View2}>
@@ -78,7 +78,7 @@ const OurProduct = ({ navigation }) => {
                         </View>
                     </View>
                 </ScrollView>
-            </View> */}
+            </View>
         </>
     )
 }
