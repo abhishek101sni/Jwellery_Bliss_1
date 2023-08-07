@@ -3,11 +3,12 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, ScrollView,
 import { height, moderateScale, moderateScaleVertical, textScale } from '../utils/responsive'
 import { AuthContext } from "./AuthContext";
 import { fillDetails } from "../redux/Formdetails/formDetails.action-creator";
-import { UseSelector,useDispatch, useSelector } from "react-redux";
+import { UseSelector, useDispatch, useSelector } from "react-redux";
+import { getUserDetailsActionCreator } from '../redux/Formdetails/formDetails.action-creator';
 
 const FormDetails = ({ navigation }) => {
     const { userToken } = useContext(AuthContext);
-    const userDetails = useSelector((state)=>state.userDetails);
+    const userDetails = useSelector((state) => state.userDetails);
     const dispatch = useDispatch();
     const { addUserDetails } = useContext(AuthContext);
     const [brandName, setBrandName] = useState(null);
@@ -23,15 +24,16 @@ const FormDetails = ({ navigation }) => {
         latitude: 37.779, longitude: -122.4194
     });
 
-    useEffect(() => {
-        if (!userToken) {
-            return;
-        }
-        if (userDetails) {
-            navigation.navigate('tabs');
-            return;
-        }
-    }, [userToken, userDetails]);
+    // useEffect(() => {
+    //     if (!userToken) {
+    //         return;
+    //     }
+    //     if (userDetails) {
+    //         console.log("hello");
+    //         navigation.navigate('tabs');
+    //         return;
+    //     }
+    // }, [userToken, userDetails]);
 
     const submitData = () => {
         const userDetails = {
@@ -49,6 +51,13 @@ const FormDetails = ({ navigation }) => {
         dispatch(fillDetails(userToken, userDetails));
         navigation.navigate('tabs');
     };
+    useEffect(() => {
+        if (userDetails && !userDetails.brandName) {
+            dispatch(getUserDetailsActionCreator(userInfo._id, userToken));
+            navigation.navigate('tabs');
+            console.log(userDetails);
+        }
+    }, []);
 
     return (
         <ImageBackground style={{ flex: 1 }} source={require("../assets/background-image2.png")}>
@@ -65,7 +74,7 @@ const FormDetails = ({ navigation }) => {
                 <View style={{ flex: 1, marginTop: 60 }}>
 
                     <View style={styles.BusinessDetailsTitle}>
-                        <Text style={styles.BusinessDetailsText}>Business Details</Text>
+                        <Text style={styles.BusinessDetailsText}>Business Details{userDetails?.brandName}</Text>
                     </View>
 
                     <View>
@@ -92,7 +101,7 @@ const FormDetails = ({ navigation }) => {
                                 autoCapitalize
                                 autoCorrect={false}
                                 placeholder="Pincode"
-                                keyboardType = 'numeric'
+                                keyboardType='numeric'
                                 placeholderTextColor="#C7C7CD"
                                 onChangeText={setPincode}
                             />
@@ -133,7 +142,7 @@ const FormDetails = ({ navigation }) => {
                             autoCapitalize
                             autoCorrect={false}
                             placeholder="GST no."
-                            keyboardType = 'numeric'
+                            keyboardType='numeric'
                             placeholderTextColor="#C7C7CD"
                             onChangeText={setGstno}
                         />
@@ -153,7 +162,7 @@ const FormDetails = ({ navigation }) => {
                                 autoCapitalize
                                 autoCorrect={false}
                                 placeholder="Contact no."
-                                keyboardType = 'numeric'
+                                keyboardType='numeric'
                                 placeholderTextColor="#C7C7CD"
                                 onChangeText={setContactNo}
                             />

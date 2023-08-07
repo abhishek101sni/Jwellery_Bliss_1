@@ -37,7 +37,7 @@ const Chains = ({ navigation }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5009/api/products', {
+      const response = await axios.get('https://bliss-app-backend-production.up.railway.app/api/products', {
         params: { category: 'chains' },
       });
       setProducts(response.data);
@@ -52,7 +52,7 @@ const Chains = ({ navigation }) => {
         data={products}
         renderItem={({ item }) => <Text>{item.name}</Text>}
         keyExtractor={(item) => item.id.toString()}
-      /> */}
+      />
       {/* <FlatList contentContainerStyle={{ alignItems: "center" }}
         data={category}
         numColumns={2}
@@ -186,32 +186,11 @@ const Chains = ({ navigation }) => {
                   <Text style={styles.View5}>SOLID NAWABI</Text>
                 </View>
               </View>
-            </TouchableOpacity>
-          </View>
+            </TouchableOpacity> */}
+      {/* </View>
 
         </ScrollView>
-         {/* Whatsapp */}
-         <View style={{ bottom: -90, position: "absolute", right: 20 }}>
-                <TouchableOpacity  onPress={() => changeModalVisible(true)} style={styles.HelpButtonAlignment} >
-                    <View style={styles.icontextAlignment}>
-                        <Image source={require("../../assets/whatsapp-white.png")} style={styles.whatsappIcon} />
-                        <Text style={styles.helpText}>Help</Text>
-                    </View>
-                </TouchableOpacity>
-
-                <Modal
-                    transparent={true}
-                    animationType='fade'
-                    visible={isModalVisible}
-                    nRequestClose={() => changeModalVisible(false)}
-                >
-                    <SimpleModal changeModalVisible={changeModalVisible}
-                        setData={setData}
-                    />
-                </Modal>
-            </View>
-            {/* Whatsapp */}
-      </View>
+      </View> */}
     </>
   )
 }

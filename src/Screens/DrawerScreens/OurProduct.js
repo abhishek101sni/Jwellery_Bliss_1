@@ -35,14 +35,14 @@ const OurProduct = ({ navigation }) => {
 
     return (
         <>
-            {/* <FlatList contentContainerStyle={{ alignItems: "center", backgroundColor: "black", flex: 1 }}
+            <FlatList contentContainerStyle={{ alignItems: "center" }}
                 data={data}
                 numColumns={2}
                 renderItem={({ item, index }) => <View key={index} style={styles.View1}>
 
 
                     <View style={styles.View2}>
-                        <TouchableOpacity >
+                        <TouchableOpacity onLongPress={() => { navigation.navigate('chains') }}>
                             <View style={styles.View3}>
                                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
                                 <Text style={styles.View5}>{item?.category}</Text>
@@ -50,8 +50,8 @@ const OurProduct = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                 </View>}
-            /> */}
-            <View style={{ backgroundColor: "#343434", flex: 1 }}>
+            />
+            {/* <View style={{ backgroundColor: "black", flex: 1 }}>
                 <ScrollView>
                     <View style={styles.alignment}>
 
@@ -96,28 +96,7 @@ const OurProduct = ({ navigation }) => {
                         </View>
                     </View>
                 </ScrollView>
-                {/* Whatsapp */}
-                <View style={{ bottom: -90, position: "absolute", right: 20 }}>
-                    <TouchableOpacity onPress={() => changeModalVisible(true)} style={styles.HelpButtonAlignment} >
-                        <View style={styles.icontextAlignment}>
-                            <Image source={require("../../assets/whatsapp-white.png")} style={styles.whatsappIcon} />
-                            <Text style={styles.helpText}>Help</Text>
-                        </View>
-                    </TouchableOpacity>
-
-                    <Modal
-                        transparent={true}
-                        animationType='fade'
-                        visible={isModalVisible}
-                        nRequestClose={() => changeModalVisible(false)}
-                    >
-                        <SimpleModal changeModalVisible={changeModalVisible}
-                            setData={setData2}
-                        />
-                    </Modal>
-                </View>
-                {/* Whatsapp */}
-            </View>
+            </View> */}
         </>
     )
 }
