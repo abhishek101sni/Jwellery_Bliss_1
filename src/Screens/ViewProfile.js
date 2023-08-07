@@ -2,20 +2,12 @@ import { View, Text, TouchableOpacity, ScrollView, Image, ImageBackgroundCompone
 import React, { useContext, useEffect } from 'react';
 import { AuthContext } from './AuthContext';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUserDetailsActionCreator } from '../redux/Formdetails/formDetails.action-creator';
 import { height, moderateScale, moderateScaleVertical, textScale } from '../utils/responsive'
 
 const ViewProfile = () => {
 
     const { userInfo } = useContext(AuthContext);
     const userDetails = useSelector((state) => state.userDetailsData);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (userDetails && !userDetails.brandName) {
-            console.log('viewProfile screen userinfo', userInfo);
-            dispatch(getUserDetailsActionCreator(userInfo._id, userToken));
-        }
-    }, []);
 
     return (
         <ImageBackground style={{ flex: 1 }} source={require("../assets/background-image2.png")}>

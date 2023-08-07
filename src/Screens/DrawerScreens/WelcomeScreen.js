@@ -7,16 +7,12 @@ import { AuthContext } from '../AuthContext';
 import { height, moderateScale, moderateScaleVertical, textScale } from '../../utils/responsive'
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserDetailsActionCreator } from '../../redux/Formdetails/formDetails.action-creator';
-import axios from 'axios';
+
 
 const WelcomeScreen = () => {
     const { logout, userToken, userInfo } = useContext(AuthContext);
 
     const { payload: user } = userInfo;
-    const check = () => {
-        console.log('hello checked');
-        console.log(`userrrrrrrrrrrrr`, user)
-    };
     const userDetails = useSelector((state) => state.userDetailsData);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -56,32 +52,6 @@ const WelcomeScreen = () => {
     };
 
     const navigation = useNavigation()
-
-    // const { userInfo, userDetails } = useContext(AuthContext);
-
-    // const { payload: user } = userInfo;
-    // const check = () => {
-    //     console.log("hello checked");
-    // }
-    // const API_KEY = 'goldapi-fl6arlkm9asg2-io'
-    // const BASE_URL = 'https://www.goldapi.io/api'
-    // const GRAMS_PER_OUNCE = 31.1034768;
-
-    // const getGoldPrice = async () => {
-    //     const [goldPrice, setGoldPrice] = useState(null);
-    //     try {
-    //         const response = await axios.get(`${BASE_URL}/XAU/INR`, {
-    //             headers: {
-    //                 'x-access-token': API_KEY,
-    //             },
-    //         });
-    //         const priceInTroyOunces = response.data.price_gram_24k;
-    //         console.log(priceInTroyOunces);
-    //     } catch (error) {
-    //         console.error('Error fetching gold price:', error);
-    //     }
-    // }
-    // getGoldPrice();
 
     return (
         <ImageBackground style={{ flex: 1 }} source={require("../../assets/background-image2.png")}>
@@ -164,7 +134,7 @@ const WelcomeScreen = () => {
                     </View>
                 </View>
 
-                <View style={styles.WastageChartButton} onPress={check} >
+                <View style={styles.WastageChartButton}>
                     <TouchableOpacity onPress={() => navigation.navigate('pricelist')}>
                         <Text style={styles.buttontext}>WASTAGE CHART</Text>
                     </TouchableOpacity>
