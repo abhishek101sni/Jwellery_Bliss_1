@@ -1,12 +1,31 @@
-import { View, Text, Image, TouchableOpacity, TextInput, Button, ScrollView, StyleSheet, Modal, ImageBackground } from "react-native";
+import { View, Text, Image, TouchableOpacity, TextInput, Button, ScrollView, StyleSheet, Modal, ImageBackground, Dimensions } from "react-native";
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import { addToCart } from "../redux/action";
 import { addToCart, removeFromCart } from "../redux/action";
 import { height, moderateScale, moderateScaleVertical, textScale } from '../utils/responsive'
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
+import SimpleModal from "./SimpleModal";
+
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT_MODAL = 150;
 
 const Cart = ({ navigation }) => {
+    // WhatsApp
+    const [isModalVisible, setisModalVisible] = useState(false)
+    const [chooseData, setChooseData] = useState();
+
+    const changeModalVisible = (bool) => {
+        setisModalVisible(bool)
+    }
+
+
+    const setData = (data) => {
+        setChooseData(data)
+    }
+    // WhatsApp
+
+
     const [showModal, setShowModal] = useState(false);
     const { cart, cartDetails } = useSelector((state) => state.reducer);
     const dispatch = useDispatch();
@@ -37,9 +56,9 @@ const Cart = ({ navigation }) => {
         return (
             <ImageBackground source={require("../assets/background-image2.png")} style={{ flex: 1 }}>
 
-                <ImageBackground source={require("../assets/texture.png")} style={styles.EmptyCart} imageStyle={{ borderRadius: 40 }}>
-                    <Image source={require("../assets/empty-cart.png")} style={styles.imageSize} />
-                    <Text style={{ alignItems: "center", fontFamily: "Poppins-Medium", textAlign: "center", fontSize: 23, color: "black", justifyContent: "center", marginTop: 10 }}>Cart is Empty!!!!</Text>
+                <ImageBackground imageStyle={{ marginLeft: moderateScale(40), marginTop: moderateScaleVertical(150), borderRadius: 20, flex: 1, height: 250, width: 350 }} source={require("../assets/texture.png")}>
+                    <Image source={require("../assets/empty-cart.png")} style={{ width: moderateScale(150), height: moderateScaleVertical(150), alignSelf: "center", marginTop: moderateScale(180) }} />
+                    <Text style={{ textAlign: "center", fontSize: textScale(25), color: "black", marginTop: moderateScale(10) }}>Cart is Empty!!!!</Text>
                 </ImageBackground>
 
             </ImageBackground>
@@ -99,8 +118,8 @@ const Cart = ({ navigation }) => {
                                 </View>
                                 <View style={styles.TotalPaddingAlignment}>
                                     <Text style={styles.TotalSubChildAlignment2}>{total}</Text>
-                                    <Text style={styles.TotalSubChildAlignment2}>435.00</Text>
-                                    <Text style={styles.TotalSubChildAlignment2}>435.00</Text>
+                                    <Text style={styles.TotalSubChildAlignment2}>000.00</Text>
+                                    <Text style={styles.TotalSubChildAlignment2}>000.00</Text>
                                     <Text style={styles.TotalSubChildAlignment2}>1000.00</Text>
                                     <Text style={styles.TotalSubChildAlignment20}>{grandTotal}</Text>
                                 </View>
@@ -108,12 +127,6 @@ const Cart = ({ navigation }) => {
 
                             <View style={styles.line}></View>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: -5, marginHorizontal: -10, }}>
-
-                                {/* <TouchableOpacity onPress={() => navigation.navigate('product')}>
-                                    <View style={styles.SubmitButton}>
-                                        <Text style={{ backgroundColor: "#eec06b", padding: 10, marginRight: 5, fontWeight: '700', color: 'black' }}>CONTINUE SHOPPING</Text>
-                                    </View>
-                                </TouchableOpacity> */}
                                 <View>
                                     <TouchableOpacity onPress={() => navigation.navigate('product')} style={styles.logInButtonAlignment}>
                                         <ImageBackground source={require("../assets/texture.png")} style={styles.ImageBackgroundStyle} imageStyle={{ borderRadius: 80 }}>
@@ -122,19 +135,6 @@ const Cart = ({ navigation }) => {
                                     </TouchableOpacity>
                                 </View>
 
-                                {/* <TouchableOpacity onPress={Navigator}>
-                                <View style={styles.SubmitButton}>
-                                    <Text style={styles.SubmitButtonText}>PLACE ORDER</Text>
-                                </View>
-                            </TouchableOpacity>  */}
-                                {/* ---------------------- */}
-                                {/* <View>
-                                    <TouchableOpacity onPress={Navigator} style={styles.logInButtonAlignment}>
-                                        <ImageBackground source={require("../assets/texture.png")} style={styles.ImageBackgroundStyle} imageStyle={{ borderRadius: 80 }}>
-                                            <Text style={styles.logInButtonText}>PLACE ORDER</Text>
-                                        </ImageBackground>
-                                    </TouchableOpacity>
-                                </View> */}
                                 <View>
                                     <TouchableOpacity onPress={showMsg} style={styles.logInButtonAlignment}>
                                         <ImageBackground source={require("../assets/texture.png")} style={styles.ImageBackgroundStyle} imageStyle={{ borderRadius: 80 }}>
@@ -158,35 +158,6 @@ const Cart = ({ navigation }) => {
                             </ImageBackground>
 
                             <View style={styles.View18}>
-
-
-                                {/* <Text style={styles.View20}>Advance Payment</Text>
-                        <View>
-                            <Text style={styles.View21}>Advance Payment 28900.00</Text>
-                        </View>
-
-                        <TouchableOpacity style={styles.View22}>
-
-                            <View style={styles.MOdalloginbutton}>
-                                <Text style={styles.MOdallogintext}>ENTER ADVANCE AMOUNT</Text>
-                            </View>
-
-                        </TouchableOpacity>
-
-
-                        <View style={styles.View23}>
-
-                            <TextInput placeholder="ENTER ADVANCE PAYMENT AMOUNT" style={styles.View24} placeholderTextColor={'#eec06b'} />
-                        </View>
-
-                        <Text style={styles.View25}>Select Payment option</Text>
-
-                        <TouchableOpacity style={styles.View26} >
-                            <View style={styles.signupbutton}>
-                                <Text style={styles.signuptext}>PROCEED TO PAY</Text>
-                            </View>
-                        </TouchableOpacity> */}
-
                                 <View style={{ flexDirection: "row", marginHorizontal: -10, justifyContent: 'space-around', }}>
                                     <TouchableOpacity onPress={() => navigation.navigate('tabs')}>
                                         <View style={styles.signInbutton}>
@@ -197,10 +168,33 @@ const Cart = ({ navigation }) => {
                             </View>
 
                         </Modal>
-                        {/* ------------------------------------------------------------- */}
                     </ScrollView>
+
                 </View>
             </ScrollView>
+
+            {/* Whatsapp */}
+            <View style={{ bottom: -90, position: "absolute", right: 20 }}>
+                <TouchableOpacity onPress={() => changeModalVisible(true)} style={styles.HelpButtonAlignment} >
+                    <View style={styles.icontextAlignment}>
+                        <Image source={require("../assets/whatsapp-white.png")} style={styles.whatsappIcon} />
+                        <Text style={styles.helpText}>Help</Text>
+                    </View>
+                </TouchableOpacity>
+
+                <Modal
+                    transparent={true}
+                    animationType='fade'
+                    visible={isModalVisible}
+                    nRequestClose={() => changeModalVisible(false)}
+                >
+                    <SimpleModal changeModalVisible={changeModalVisible}
+                        setData={setData}
+                    />
+                </Modal>
+            </View>
+            {/* Whatsapp */}
+
         </ImageBackground>
     )
 }
@@ -219,13 +213,16 @@ const styles = StyleSheet.create({
         marginLeft: moderateScale(40),
     },
     EmptyCart: {
-        width: moderateScale(300),
-        marginTop: moderateScaleVertical(300),
-        alignItems: 'center',
-        padding: 40,
-        width: moderateScale(350),
-        height: moderateScaleVertical(300),
-        marginLeft: moderateScale(40),
+        height: HEIGHT_MODAL,
+        width: WIDTH - 80,
+        // width: moderateScale(300),
+        // marginTop: moderateScaleVertical(300),
+        // alignItems: 'center',
+        // justifyContent: "center",
+        // padding: 40,
+        // width: moderateScale(350),
+        // height: moderateScaleVertical(300),
+        // marginLeft: moderateScale(40),
     },
     goldenStrip: {
         borderWidth: moderateScale(3),
@@ -255,10 +252,9 @@ const styles = StyleSheet.create({
     },
     imageSize: {
         // marginTop: 200,
-        width: moderateScale(200),
-        height: moderateScaleVertical(200),
-        resizeMode: "cover",
-        alignItems: "center",
+        width: moderateScale(150),
+        height: moderateScaleVertical(150),
+        // alignItems: "center",
         // marginLeft: 40
     },
 
@@ -328,14 +324,15 @@ const styles = StyleSheet.create({
     },
     View7: {
         backgroundColor: 'black',
-        padding: 10,
-        borderRadius: 5,
+        padding: 2,
+        borderRadius: 10,
         flexDirection: "row",
         justifyContent: "space-around",
         marginHorizontal: moderateScale(-120),
     },
     View8: {
-        marginRight: moderateScale(5)
+        marginRight: moderateScale(5),
+        // height:moderateScale(8)
     },
     View9: {
         color: 'white',
@@ -436,17 +433,7 @@ const styles = StyleSheet.create({
     //     marginLeft: 40,
 
     // },
-    modal: {
-        marginTop: moderateScaleVertical(150),
-        alignItems: 'center',
-        backgroundColor: "black",
-        // padding: 40,
-        borderRadius: 40,
-        width: moderateScale(120),
-        height: moderateScaleVertical(40),
-        marginLeft: moderateScale(40),
 
-    },
     modalText: {
         color: "white",
         textAlign: "center",
@@ -681,5 +668,33 @@ const styles = StyleSheet.create({
         marginTop: moderateScaleVertical(40),
         fontFamily: "Poppins-Medium"
     },
+    // Whatsapp style
 
+    HelpButtonAlignment: {
+        justifyContent: "center",
+        backgroundColor: "#25D366",
+        width: moderateScale(110),
+        height: moderateScaleVertical(45),
+        borderRadius: 40,
+        marginBottom: moderateScaleVertical(100)
+        // position: "fixed",
+    },
+    icontextAlignment: {
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        paddingHorizontal: moderateScale(-30),
+        marginHorizontal: moderateScale(25),
+    },
+    whatsappIcon: {
+        width: moderateScale(20),
+        height: moderateScaleVertical(20),
+        // position:"fixed",
+    },
+    helpText: {
+        color: 'white',
+        fontSize: textScale(13),
+        fontWeight: "bold",
+    }
 })

@@ -1,10 +1,26 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView, FlatList, Modal } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { height, moderateScale, moderateScaleVertical, textScale } from '../../utils/responsive'
 import axios from 'axios';
+import SimpleModal from '../SimpleModal';
 
 const Chains = ({ navigation }) => {
+
+  // WhatsApp
+  const [isModalVisible, setisModalVisible] = useState(false)
+  const [chooseData, setChooseData] = useState();
+
+  const changeModalVisible = (bool) => {
+    setisModalVisible(bool)
+  }
+
+
+  const setData = (data) => {
+    setChooseData(data)
+  }
+  // WhatsApp
+
   const [category, setcategory] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -32,11 +48,11 @@ const Chains = ({ navigation }) => {
 
   return (
     <>
-      <FlatList
+      {/* <FlatList
         data={products}
         renderItem={({ item }) => <Text>{item.name}</Text>}
         keyExtractor={(item) => item.id.toString()}
-      />
+      /> */}
       {/* <FlatList contentContainerStyle={{ alignItems: "center" }}
         data={category}
         numColumns={2}
@@ -53,7 +69,7 @@ const Chains = ({ navigation }) => {
 
         </View>}
       /> */}
-      {/* <View style={{ backgroundColor: "black", flex: 1 }}>
+      <View style={{ backgroundColor: "black", flex: 1 }}>
         <ScrollView>
           <View style={styles.alignment}>
             <View style={styles.View2}>
@@ -162,19 +178,40 @@ const Chains = ({ navigation }) => {
                   <Text style={styles.View5}>MADRASI CHAINS</Text>
                 </View>
               </TouchableOpacity>
-            </View> */}
-      {/* <TouchableOpacity>
+            </View>
+            <TouchableOpacity>
               <View style={styles.View2}>
                 <View style={styles.View3}>
                   <Image style={styles.ImageView} source={require("../../assets/GWT-270.jpg")} />
                   <Text style={styles.View5}>SOLID NAWABI</Text>
                 </View>
               </View>
-            </TouchableOpacity> */}
-      {/* </View>
+            </TouchableOpacity>
+          </View>
 
         </ScrollView>
-      </View> */}
+         {/* Whatsapp */}
+         <View style={{ bottom: -90, position: "absolute", right: 20 }}>
+                <TouchableOpacity  onPress={() => changeModalVisible(true)} style={styles.HelpButtonAlignment} >
+                    <View style={styles.icontextAlignment}>
+                        <Image source={require("../../assets/whatsapp-white.png")} style={styles.whatsappIcon} />
+                        <Text style={styles.helpText}>Help</Text>
+                    </View>
+                </TouchableOpacity>
+
+                <Modal
+                    transparent={true}
+                    animationType='fade'
+                    visible={isModalVisible}
+                    nRequestClose={() => changeModalVisible(false)}
+                >
+                    <SimpleModal changeModalVisible={changeModalVisible}
+                        setData={setData}
+                    />
+                </Modal>
+            </View>
+            {/* Whatsapp */}
+      </View>
     </>
   )
 }
@@ -223,5 +260,34 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     fontSize: textScale(10),
     justifyContent: "center",
-  }
+  },
+  // Whatsapp style
+
+  HelpButtonAlignment: {
+    justifyContent: "center",
+    backgroundColor: "#25D366",
+    width: moderateScale(110),
+    height: moderateScaleVertical(45),
+    borderRadius: 40,
+    marginBottom: moderateScaleVertical(100)
+    // position: "fixed",
+},
+icontextAlignment: {
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    paddingHorizontal: moderateScale(-30),
+    marginHorizontal: moderateScale(25),
+},
+whatsappIcon: {
+    width: moderateScale(20),
+    height: moderateScaleVertical(20),
+    // position:"fixed",
+},
+helpText: {
+    color: 'white',
+    fontSize: textScale(13),
+    fontWeight: "bold",
+}
 })

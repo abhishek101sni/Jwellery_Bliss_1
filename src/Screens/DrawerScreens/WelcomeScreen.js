@@ -1,15 +1,30 @@
-import { View, Text, Dimensions, ScrollView, StyleSheet, TouchableOpacity, Image, ImageBackground } from 'react-native'
+import { View, Text, Dimensions, ScrollView, StyleSheet, TouchableOpacity, Image, ImageBackground, Modal } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import MarqueeView from "react-native-marquee-view";
 import { useNavigation } from '@react-navigation/native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { AuthContext } from '../AuthContext';
-import { height, moderateScale, moderateScaleVertical, textScale } from '../../utils/responsive'
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserDetailsActionCreator } from '../../redux/Formdetails/formDetails.action-creator';
 import axios from 'axios';
+import SimpleModal from '../SimpleModal';
+import { height, moderateScale, moderateScaleVertical, textScale } from '../../utils/responsive'
 
 const WelcomeScreen = () => {
+    // WhatsApp
+    const [isModalVisible, setisModalVisible] = useState(false)
+    const [chooseData, setChooseData] = useState();
+
+    const changeModalVisible = (bool) => {
+        setisModalVisible(bool)
+    }
+
+
+    const setData = (data) => {
+        setChooseData(data)
+    }
+    // WhatsApp
+
     const { logout, userToken, userInfo } = useContext(AuthContext);
 
     const { payload: user } = userInfo;
@@ -39,6 +54,9 @@ const WelcomeScreen = () => {
         {
             img: require('../../assets/banner.jpg'),
         },
+        {
+            img: require('../../assets/banner.jpg'),
+        },
     ];
     const renderItem = ({ item, index }) => {
         return (
@@ -55,6 +73,51 @@ const WelcomeScreen = () => {
         );
     };
 
+    // Products Carosuel
+    const entries2 = [
+        {
+            img: require('../../assets/CZ_RING_1.jpg'),
+            onPress: () => {
+                navigation.navigate("chains");
+            }
+        },
+        {
+            img: require('../../assets/CZ_RING_2.jpg'),
+            onPress: () => {
+                navigation.navigate("CastingJwellery");
+            }
+        },
+        {
+            img: require('../../assets/CZ_RING_3.jpg'),
+            onPress: () => {
+                navigation.navigate("CastingCzJwellery");
+            }
+        },
+        {
+            img: require('../../assets/CZ_RING_4.jpg'),
+            onPress: () => {
+                navigation.navigate("PlainJwellery");
+            }
+        },
+    ];
+    const renderItem2 = ({ item, index }) => {
+        return (
+            <TouchableOpacity onPress={item.onPress}>
+                <Image
+                    source={item.img}
+                    style={{
+                        height: moderateScaleVertical(150),
+                        width: moderateScale(280),
+                        marginTop: moderateScaleVertical(30),
+                        borderRadius: 20,
+                        marginBottom: moderateScaleVertical(10),
+                        // backgroundColor:"black"
+                    }}
+                />
+            </TouchableOpacity>
+        );
+    };
+
     const navigation = useNavigation()
 
     // const { userInfo, userDetails } = useContext(AuthContext);
@@ -63,25 +126,25 @@ const WelcomeScreen = () => {
     // const check = () => {
     //     console.log("hello checked");
     // }
-    const API_KEY = 'goldapi-fl6arlkm9asg2-io'
-    const BASE_URL = 'https://www.goldapi.io/api'
-    const GRAMS_PER_OUNCE = 31.1034768;
+    // const API_KEY = 'goldapi-fl6arlkm9asg2-io'
+    // const BASE_URL = 'https://www.goldapi.io/api'
+    // const GRAMS_PER_OUNCE = 31.1034768;
 
-    const getGoldPrice = async () => {
-        const [goldPrice, setGoldPrice] = useState(null);
-        try {
-            const response = await axios.get(`${BASE_URL}/XAU/INR`, {
-                headers: {
-                    'x-access-token': API_KEY,
-                },
-            });
-            const priceInTroyOunces = response.data.price_gram_24k;
-            console.log(priceInTroyOunces);
-        } catch (error) {
-            console.error('Error fetching gold price:', error);
-        }
-    }
-    getGoldPrice();
+    // const getGoldPrice = async () => {
+    //     const [goldPrice, setGoldPrice] = useState(null);
+    //     try {
+    //         const response = await axios.get(`${BASE_URL}/XAU/INR`, {
+    //             headers: {
+    //                 'x-access-token': API_KEY,
+    //             },
+    //         });
+    //         const priceInTroyOunces = response.data.price_gram_24k;
+    //         console.log(priceInTroyOunces);
+    //     } catch (error) {
+    //         console.error('Error fetching gold price:', error);
+    //     }
+    // }
+    // getGoldPrice();
 
     return (
         <ImageBackground style={{ flex: 1 }} source={require("../../assets/background-image2.png")}>
@@ -99,23 +162,25 @@ const WelcomeScreen = () => {
                                 <Image source={require("../../assets/notification.png")} style={styles.NotificationBell} />
                             </TouchableOpacity> */}
                         </View>
-                        <View style={{ marginLeft: 30 }}>
+                        <View style={{ marginLeft: moderateScale(30) }}>
                             <Text style={styles.WelcomeText}>Welcome,</Text>
                             <Text style={styles.UserName}>{userInfo?.name}</Text>
                             <Text style={styles.UserBrandName}>{userDetails?.brandName}</Text>
                             <View style={{ marginTop: 20 }}>
                                 <Text style={styles.GoldenScreenBelowText}>Welcome to our app!We have thrilled to have you here.</Text>
-                                <Text style={styles.GoldenScreenBelowText}>Enjoy Shopping!😊</Text>
+                                <View style={{ flexDirection: "row" }}>
+                                    <Text style={styles.GoldenScreenBelowText}>Enjoy Shopping! </Text>
+                                    <Image source={require("../../assets/smiley-emoji.png")} style={styles.smileyEmoji} />
+                                </View>
                             </View>
                         </View>
-
                     </ImageBackground>
                 </View>
 
                 <MarqueeView>
                     <View style={styles.MarqueeAlignment}>
                         <Text style={{ color: "#404040" }}>
-                            Price 18K:$  | Fine rate: red | Gold MCX: Rs 50,000 995
+                            Price 18K: | Fine rate: red | Gold MCX: Rs 50,000 995
                             rate: Rs 45,000 | Fine rate: rs720000 | Gold MCX: Rs 50,000
                         </Text>
                     </View>
@@ -124,7 +189,7 @@ const WelcomeScreen = () => {
                 <View style={styles.GoldenCategoriesButtonsAlignment}>
 
                     <View>
-                        <TouchableOpacity onPress={() => navigation.navigate('product')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('eighteenkarat')}>
                             <ImageBackground source={require("../../assets/texture.png")} style={styles.GoldenCategoriesButtonsStyle} imageStyle={{ borderRadius: 12 }}>
                                 <Text style={styles.GoldenCategoriesButtonsText}>18KT</Text>
                             </ImageBackground>
@@ -132,7 +197,7 @@ const WelcomeScreen = () => {
                     </View>
 
                     <View>
-                        <TouchableOpacity onPress={() => navigation.navigate('product')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('twentykarat')}>
                             <ImageBackground source={require("../../assets/texture.png")} style={styles.GoldenCategoriesButtonsStyle} imageStyle={{ borderRadius: 12 }}>
                                 <Text style={styles.GoldenCategoriesButtonsText}>20KT</Text>
                             </ImageBackground>
@@ -140,28 +205,28 @@ const WelcomeScreen = () => {
                     </View>
 
                     <View>
-                        <TouchableOpacity onPress={() => navigation.navigate('product')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('twentytwokarat')}>
                             <ImageBackground source={require("../../assets/texture.png")} style={styles.GoldenCategoriesButtonsStyle} imageStyle={{ borderRadius: 12 }}>
                                 <Text style={styles.GoldenCategoriesButtonsText}>22KT</Text>
                             </ImageBackground>
                         </TouchableOpacity>
                     </View>
 
-                    <View>
+                    {/* <View>
                         <TouchableOpacity onPress={() => navigation.navigate('product')}>
                             <ImageBackground source={require("../../assets/texture.png")} style={styles.GoldenCategoriesButtonsStyle} imageStyle={{ borderRadius: 12 }}>
                                 <Text style={styles.GoldenCategoriesButtonsText}>COINS</Text>
                             </ImageBackground>
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
 
-                    <View>
+                    {/* <View>
                         <TouchableOpacity onPress={() => navigation.navigate('product')}>
                             <ImageBackground source={require("../../assets/texture.png")} style={styles.GoldenCategoriesButtonsStyle} imageStyle={{ borderRadius: 12 }}>
                                 <Text style={styles.GoldenCategoriesButtonsText}>DIGITAL GOLD</Text>
                             </ImageBackground>
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
                 </View>
 
                 <View style={styles.WastageChartButton} onPress={check} >
@@ -171,6 +236,14 @@ const WelcomeScreen = () => {
                 </View>
 
                 {/* // Parallax */}
+                <Carousel
+                    data={entries2}
+                    renderItem={renderItem2}
+                    sliderWidth={width}
+                    itemWidth={300}
+                    loop
+                    firstItem={1}
+                />
 
                 <Carousel
                     data={entries}
@@ -190,20 +263,38 @@ const WelcomeScreen = () => {
                     <Image source={require("../../assets/2.png")} style={styles.imgsize2} />
                     <Image source={require("../../assets/3.png")} style={styles.imgsize3} />
                     <Image source={require("../../assets/4.png")} style={styles.imgsize4} />
-                </View>
-                <View style={styles.logosAlignment2}>
                     <Image source={require("../../assets/5.png")} style={styles.imgsize5} />
                     <Image source={require("../../assets/6.png")} style={styles.imgsize6} />
                 </View>
+                {/* <View style={styles.logosAlignment2}>
+                    <Image source={require("../../assets/5.png")} style={styles.imgsize5} />
+                    <Image source={require("../../assets/6.png")} style={styles.imgsize6} />
+                </View> */}
 
-                {/* COLOMN 8 -------------------------------*/}
-                {/* <TouchableOpacity>
-                        <View style={styles.appointmentbutton}>
-                            <Text style={styles.appointmentlogintext}>Request Appointment</Text>
-                        </View>
-                    </TouchableOpacity> */}
-                {/* </View> */}
             </ScrollView>
+
+            {/* Whatsapp */}
+            <View style={{ bottom: -90, position: "absolute", right: 20 }}>
+                <TouchableOpacity onPress={() => changeModalVisible(true)} style={styles.HelpButtonAlignment} >
+                    <View style={styles.icontextAlignment}>
+                        <Image source={require("../../assets/whatsapp-white.png")} style={styles.whatsappIcon} />
+                        <Text style={styles.helpText}>Help</Text>
+                    </View>
+                </TouchableOpacity>
+
+                <Modal
+                    transparent={true}
+                    animationType='fade'
+                    visible={isModalVisible}
+                    nRequestClose={() => changeModalVisible(false)}
+                >
+                    <SimpleModal changeModalVisible={changeModalVisible}
+                        setData={setData}
+                    />
+                </Modal>
+            </View>
+            {/* Whatsapp */}
+
         </ImageBackground>
     )
 }
@@ -255,8 +346,12 @@ const styles = StyleSheet.create({
         fontSize: textScale(10),
         fontWeight: "600"
     },
+    smileyEmoji: {
+        width: moderateScale(14),
+        height: moderateScaleVertical(14),
+    },
     MarqueeAlignment: {
-        marginTop: moderateScaleVertical(20),
+        marginTop: moderateScaleVertical(10),
         color: "#fff"
     },
     GoldenCategoriesButtonsAlignment: {
@@ -270,7 +365,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         width: moderateScale(60),
         height: moderateScaleVertical(60),
-        marginTop: moderateScaleVertical(30),
+        marginTop: moderateScaleVertical(10),
         alignSelf: 'center'
     },
     GoldenCategoriesButtonsText: {
@@ -280,7 +375,7 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     WastageChartButton: {
-        marginTop: moderateScaleVertical(40),
+        marginTop: moderateScaleVertical(20),
         backgroundColor: "black",
         padding: moderateScale(15),
         alignItems: "center",
@@ -310,18 +405,18 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-around",
-        marginHorizontal: moderateScale(40),
+        marginHorizontal: moderateScale(10),
         marginVertical: moderateScaleVertical(-5),
-        marginBottom: moderateScaleVertical(2),
+        marginBottom: moderateScaleVertical(70),
     },
-    logosAlignment2: {
-        marginTop: moderateScaleVertical(25),
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-around",
-        marginHorizontal: moderateScale(140),
+    // logosAlignment2: {
+    //     marginTop: moderateScaleVertical(25),
+    //     flexDirection: "row",
+    //     alignItems: "center",
+    //     justifyContent: "space-around",
+    //     marginHorizontal: moderateScale(140),
 
-    },
+    // },
     imgsize1: {
         width: moderateScale(52),
         height: moderateScaleVertical(32),
@@ -339,13 +434,46 @@ const styles = StyleSheet.create({
         height: moderateScaleVertical(28),
     },
     imgsize5: {
-        width: moderateScale(55),
+        width: moderateScale(50),
         height: moderateScaleVertical(35),
-        marginBottom: moderateScaleVertical(40)
+        // marginBottom: moderateScaleVertical(40)
     },
     imgsize6: {
-        width: moderateScale(54),
+        width: moderateScale(50),
         height: moderateScaleVertical(30),
-        marginBottom: moderateScaleVertical(40)
+        // marginBottom: moderateScaleVertical(40)
     },
-});    
+
+    // Whatsapp style
+
+    HelpButtonAlignment: {
+        justifyContent: "center",
+        backgroundColor: "#25D366",
+        width: moderateScale(110),
+        height: moderateScaleVertical(45),
+        borderRadius: 40,
+        marginBottom: moderateScaleVertical(100)
+        // position: "fixed",
+    },
+    icontextAlignment: {
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        paddingHorizontal: moderateScale(-30),
+        marginHorizontal: moderateScale(25),
+    },
+    whatsappIcon: {
+        width: moderateScale(20),
+        height: moderateScaleVertical(20),
+        // position:"fixed",
+    },
+    helpText: {
+        color: 'white',
+        fontSize: textScale(13),
+        fontWeight: "bold",
+    }
+});
+
+
+// activeOpacity={0.5}

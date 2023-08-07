@@ -1,23 +1,25 @@
-import { View, Text, Linking, ImageBackground, TouchableOpacity, StyleSheet, Image } from 'react-native'
+import { View, Text, Linking, ImageBackground, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native'
 import React from 'react'
 import { height, moderateScale, moderateScaleVertical, textScale } from '../../utils/responsive'
 const PrivacyPolicy = () => {
   return (
-    <ImageBackground style={{ flex: 1 }} source={require("../../assets/background-image2.png")}>
-      <View>
-        <TouchableOpacity onPress={() => { Linking.openURL('https://www.demo.janusalive.com/jewellery-bliss/about-us.html') }} style={styles.logInButtonAlignment}>
-          <ImageBackground source={require("../../assets/texture.png")} style={styles.ImageBackgroundStyle} imageStyle={{ borderRadius: 80 }}>
-            <Text style={styles.logInButtonText}>PRIVACY POLICY</Text>
-          </ImageBackground>
-        </TouchableOpacity>
-        <View style={{ position: "absolute", top: height - 62, }}>
-          <Image source={require("../../assets/GOLDEN-STRIP.png")} style={{
-            borderWidth: 3,
-            width: 431,
-          }} />
+    <SafeAreaView style={{ flex: 1 }}>
+      <ImageBackground style={{ flex: 1 }} source={require("../../assets/background-image2.png")}>
+        <View>
+          <TouchableOpacity onPress={() => { Linking.openURL('https://www.demo.janusalive.com/jewellery-bliss/about-us.html') }} style={styles.logInButtonAlignment}>
+            <ImageBackground source={require("../../assets/texture.png")} style={styles.ImageBackgroundStyle} imageStyle={{ borderRadius: 80 }}>
+              <Text style={styles.logInButtonText}>PRIVACY POLICY</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+          <View style={{ position: "absolute", top: height - 62, }}>
+            <Image source={require("../../assets/GOLDEN-STRIP.png")} style={{
+              borderWidth: 3,
+              width: 431,
+            }} />
+          </View>
         </View>
-      </View>
-    </ImageBackground>
+      </ImageBackground>
+    </SafeAreaView>
   )
 }
 

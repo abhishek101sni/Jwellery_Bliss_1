@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput, FlatList, Dimensions, ImageBackground } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput, FlatList, Dimensions, Modal, ImageBackground } from 'react-native'
 import React, { useState, useRef } from 'react'
 import { height, moderateScale, moderateScaleVertical, textScale } from '../utils/responsive'
 
 import Carousel, { Pagination } from "react-native-snap-carousel"
 export const SLIDER_WIDTH = Dimensions.get("window").width + 30;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.9);
+import SimpleModal from './SimpleModal';
 
 const data = [
   {
@@ -21,6 +22,8 @@ const data = [
 ]
 
 const SnapCarousel = ({ item }) => {
+
+
   return (
     <View
       style={{
@@ -29,13 +32,26 @@ const SnapCarousel = ({ item }) => {
         alignItems: 'center',
         backgroundColor: "lightble",
       }}>
-      <Image source={item.img} style={{ width: 300, height: 250, borderRadius: 20 }} />
-      <Text style={{ marginVertical: 20, fontSize: 20, fontWeight: "400", color: "black", fontSize: 20, marginTop: 20 }}>{item.name}</Text>
+      <Image source={item.img} style={{ width: moderateScale(300), height: moderateScaleVertical(250), borderRadius: 20 }} />
+      <Text style={{ marginVertical: moderateScaleVertical(20), fontSize: textScale(20), fontWeight: "400", color: "black", fontSize: textScale(15), fontWeight: "400", marginTop: moderateScaleVertical(20) }}>{item.name}</Text>
     </View>
   )
 }
 
 const DropDown2 = ({ navigation }) => {
+  // WhatsApp
+  const [isModalVisible, setisModalVisible] = useState(false)
+  const [chooseData, setChooseData] = useState();
+
+  const changeModalVisible = (bool) => {
+    setisModalVisible(bool)
+  }
+
+
+  const setData = (data) => {
+    setChooseData(data)
+  }
+  // WhatsApp
 
   const [index, setIndex] = useState(0);
   const isCarousel = useRef(null)
@@ -54,7 +70,7 @@ const DropDown2 = ({ navigation }) => {
 
       <View style={{ flex: 0.7 }}>
         <TouchableOpacity style={styles.dropDownStyle} onPress={() => { setIsClicked(!isClicked) }}>
-          <Text>{selectCoins}</Text>
+          <Text style={{ fontSize: textScale(15), fontWeight: "500", color: "black" }}>{selectCoins}</Text>
           {isClicked ? (
             <Image source={require("../assets/drop-up.png")} style={styles.DropdownArrows} />
           ) : (<Image source={require("../assets/drop-down.png")} style={styles.DropdownArrows} />)}
@@ -84,20 +100,47 @@ const DropDown2 = ({ navigation }) => {
             onSnapToItem={index => setIndex(index)}
 
           />
-          {/* <Pagination
-              dotsLength={data.length}
-              activeDotIndex={index}
-              carouselRef={isCarousel}
-              dotStyle={{
-                width: 10,
-                height: 10,
-                borderRadius: 10,
-                marginHorizontal: 0,
-                backgroundColor: "#bc9954",
-              }}
-            /> */}
+          <Pagination
+            dotsLength={data.length}
+            activeDotIndex={index}
+            carouselRef={isCarousel}
+            dotStyle={{
+              width: moderateScale(8),
+              height: moderateScaleVertical(8),
+              borderRadius: 10,
+              marginHorizontal: moderateScale(0),
+              backgroundColor: "#bc9954",
+            }}
+            inactiveDotStyle={{
+              backgroundColor: "black"
+            }}
+            containerStyle={{ paddingVertical: -10 }}
+          />
         </View>
       </View>
+
+      {/* Whatsapp */}
+      <View style={{ bottom: -90, position: "absolute", right: 20 }}>
+        <TouchableOpacity onPress={() => changeModalVisible(true)} style={styles.HelpButtonAlignment} >
+          <View style={styles.icontextAlignment}>
+            <Image source={require("../assets/whatsapp-white.png")} style={styles.whatsappIcon} />
+            <Text style={styles.helpText}>Help</Text>
+          </View>
+        </TouchableOpacity>
+
+        <Modal
+          transparent={true}
+          animationType='fade'
+          visible={isModalVisible}
+          nRequestClose={() => changeModalVisible(false)}
+        >
+          <SimpleModal changeModalVisible={changeModalVisible}
+            setData={setData}
+          />
+        </Modal>
+      </View>
+      {/* Whatsapp */}
+
     </ImageBackground>
   )
 }
@@ -112,28 +155,28 @@ const styles = StyleSheet.create({
   },
   dropDownStyle: {
     width: "90%",
-    height: 50,
+    height: moderateScaleVertical(50),
     borderRadius: 10,
     borderWidth: 2,
     borderColor: "black",
     alignSelf: "center",
-    marginTop: 50,
+    marginTop: moderateScaleVertical(50),
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingLeft: moderateScale(15),
+    paddingRight: moderateScale(15),
     backgroundColor: "white",
   },
   DropdownArrows: {
-    width: 20,
-    height: 20
+    width: moderateScale(20),
+    height: moderateScale(20),
   },
   dropDownArea: {
-    width: "87%",
-    height: 100,
+    width: "85%",
+    height: moderateScaleVertical(100),
     borderRadius: 5,
-    marginTop: 2,
+    marginTop: moderateScaleVertical(2),
     backgroundColor: "#fff",
     elevation: 5,
     alignSelf: "center",
@@ -142,52 +185,38 @@ const styles = StyleSheet.create({
   },
   GoldcoinsItem: {
     width: "85%",
-    height: 50,
-    // borderBottomWidth: 0.2,
-    // borderBottomColor: "#8e8e8e",
+    height: moderateScaleVertical(50),
     alignSelf: "center",
     justifyContent: "center",
-    // backgroundColor:"black"
   },
-  Goldtext: {
-    fontSize: 20,
-    color: "black",
-    fontWeight: "600",
-    // textAlign: "center",
-  },
-
   SilvercoinsItem: {
     width: "85%",
-    height: 50,
-    // borderBottomWidth: 0.2,
-    // borderBottomColor: "#8e8e8e",
+    height: moderateScaleVertical(50),
     alignSelf: "center",
     justifyContent: "center"
   },
-  Silvertext: {
-    fontSize: 20,
+  Goldtext: {
+    fontSize: textScale(15),
     color: "black",
-    fontWeight: "600",
-    // textAlign: "center"
+    fontWeight: "500",
+  },
+  Silvertext: {
+    fontSize: textScale(15),
+    color: "black",
+    fontWeight: "500",
   },
   CarouselAlignment: {
-    paddingTop: 20,
+    paddingTop: moderateScaleVertical(20),
     alignItems: "center",
-    marginTop: 150
+    marginTop: moderateScaleVertical(110),
   },
   heading: {
-    fontSize: 40,
+    fontSize: textScale(40),
     fontWeight: "800",
-    marginTop: 30,
+    marginTop: moderateScaleVertical(30),
     alignSelf: "center",
     color: "black"
   },
-  dropDownSelector: {
-
-
-  },
-
-
   search: {
     width: "90%",
     height: 50,
@@ -208,14 +237,37 @@ const styles = StyleSheet.create({
   },
   line: {
     width: "100%",
-    height: 2,
+    height: moderateScaleVertical(2),
     backgroundColor: "black",
     alignSelf: 'center'
   },
+  // Whatsapp style
 
-
-
-
-
-  // Table css
+  HelpButtonAlignment: {
+    justifyContent: "center",
+    backgroundColor: "#25D366",
+    width: moderateScale(110),
+    height: moderateScaleVertical(45),
+    borderRadius: 40,
+    marginBottom: moderateScaleVertical(100)
+    // position: "fixed",
+  },
+  icontextAlignment: {
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    paddingHorizontal: moderateScale(-30),
+    marginHorizontal: moderateScale(25),
+  },
+  whatsappIcon: {
+    width: moderateScale(20),
+    height: moderateScaleVertical(20),
+    // position:"fixed",
+  },
+  helpText: {
+    color: 'white',
+    fontSize: textScale(13),
+    fontWeight: "bold",
+  }
 })

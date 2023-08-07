@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView, FlatList, Modal } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { height, moderateScale, moderateScaleVertical, textScale } from '../../utils/responsive'
-
+import SimpleModal from '../SimpleModal';
 
 const OurProduct = ({ navigation }) => {
+    // WhatsApp
+    const [isModalVisible, setisModalVisible] = useState(false)
+    const [chooseData, setChooseData] = useState();
+
+    const changeModalVisible = (bool) => {
+        setisModalVisible(bool)
+    }
+
+
+    const setData2 = (data) => {
+        setChooseData(data)
+    }
+    // WhatsAppz
     const [data, setData] = useState([]);
     // const dispatch = useDispatch();
 
@@ -22,10 +35,11 @@ const OurProduct = ({ navigation }) => {
 
     return (
         <>
-            <FlatList contentContainerStyle={{ alignItems: "center" }}
+            {/* <FlatList contentContainerStyle={{ alignItems: "center", backgroundColor: "black", flex: 1 }}
                 data={data}
                 numColumns={2}
                 renderItem={({ item, index }) => <View key={index} style={styles.View1}>
+
 
                     <View style={styles.View2}>
                         <TouchableOpacity >
@@ -36,10 +50,11 @@ const OurProduct = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                 </View>}
-            />
-            {/* <View style={{ backgroundColor: "black", flex: 1 }}>
+            /> */}
+            <View style={{ backgroundColor: "#343434", flex: 1 }}>
                 <ScrollView>
                     <View style={styles.alignment}>
+
                         <View style={styles.View2}>
                             <TouchableOpacity onPress={() => { navigation.navigate('chains') }}>
                                 <View style={styles.View3}>
@@ -48,6 +63,7 @@ const OurProduct = ({ navigation }) => {
                                 </View>
                             </TouchableOpacity>
                         </View>
+
 
                         <View style={styles.View2}>
                             <TouchableOpacity onPress={() => { navigation.navigate('PlainJwellery') }}>
@@ -60,6 +76,7 @@ const OurProduct = ({ navigation }) => {
 
                     </View>
                     <View style={styles.alignment}>
+
                         <View style={styles.View2}>
                             <TouchableOpacity onPress={() => { navigation.navigate('CastingJwellery') }}>
                                 <View style={styles.View3}>
@@ -68,6 +85,7 @@ const OurProduct = ({ navigation }) => {
                                 </View>
                             </TouchableOpacity>
                         </View>
+
                         <View style={styles.View2}>
                             <View style={styles.View3}>
                                 <TouchableOpacity onPress={() => { navigation.navigate('CastingCzJwellery') }}>
@@ -78,7 +96,28 @@ const OurProduct = ({ navigation }) => {
                         </View>
                     </View>
                 </ScrollView>
-            </View> */}
+                {/* Whatsapp */}
+                <View style={{ bottom: -90, position: "absolute", right: 20 }}>
+                    <TouchableOpacity onPress={() => changeModalVisible(true)} style={styles.HelpButtonAlignment} >
+                        <View style={styles.icontextAlignment}>
+                            <Image source={require("../../assets/whatsapp-white.png")} style={styles.whatsappIcon} />
+                            <Text style={styles.helpText}>Help</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    <Modal
+                        transparent={true}
+                        animationType='fade'
+                        visible={isModalVisible}
+                        nRequestClose={() => changeModalVisible(false)}
+                    >
+                        <SimpleModal changeModalVisible={changeModalVisible}
+                            setData={setData2}
+                        />
+                    </Modal>
+                </View>
+                {/* Whatsapp */}
+            </View>
         </>
     )
 }
@@ -95,9 +134,10 @@ const styles = StyleSheet.create({
     },
 
     View2: {
+        // marginBottom: moderateScale(-20),
         backgroundColor: 'white',
-        justifyContent: 'space-evenly',
-        marginRight: moderateScale(10),
+        justifyContent: 'space-around',
+        // marginRight: moderateScale(10),
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         borderBottomLeftRadius: 20,
@@ -106,6 +146,7 @@ const styles = StyleSheet.create({
         height: moderateScaleVertical(180)
     },
     View3: {
+        // marginTop:moderateScaleVertical(0),
         backgroundColor: 'white',
         borderRadius: 35
     },
@@ -127,5 +168,34 @@ const styles = StyleSheet.create({
         fontWeight: "900",
         fontSize: textScale(10),
         justifyContent: "center",
-    }
+    },
+     // Whatsapp style
+
+  HelpButtonAlignment: {
+    justifyContent: "center",
+    backgroundColor: "#25D366",
+    width: moderateScale(110),
+    height: moderateScaleVertical(45),
+    borderRadius: 40,
+    marginBottom: moderateScaleVertical(100)
+    // position: "fixed",
+},
+icontextAlignment: {
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    paddingHorizontal: moderateScale(-30),
+    marginHorizontal: moderateScale(25),
+},
+whatsappIcon: {
+    width: moderateScale(20),
+    height: moderateScaleVertical(20),
+    // position:"fixed",
+},
+helpText: {
+    color: 'white',
+    fontSize: textScale(13),
+    fontWeight: "bold",
+}
 })

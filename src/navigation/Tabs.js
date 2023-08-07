@@ -1,4 +1,4 @@
-import { StyleSheet, Image } from 'react-native'
+import { StyleSheet, Image, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
@@ -6,13 +6,15 @@ import Delivery from '../Screens/TabScreens/Delivery'
 import Carts from '../Screens/TabScreens/Carts'
 import Filter from '../Screens/TabScreens/Filter'
 import Drawer from './Drawer'
+// import { TouchableOpacity } from 'react-native-gesture-handler'
 // import { Image } from 'react-native-paper/lib/typescript/src/components/Avatar/Avatar'
 
 
-const Tabs = () => {
+const Tabs = ({ navigation }) => {
     const Tab = createBottomTabNavigator();
     return (
 
+            // <ImageBackground style={{}} source={require("../assets/textureHD.jpg")}>
         <Tab.Navigator>
             <Tab.Screen
                 name='Home'
@@ -39,17 +41,20 @@ const Tabs = () => {
                     }
                 }}
             /> */}
-            <Tab.Screen name='Cart' component={Carts}
+            <Tab.Screen name='Cart2' component={Carts}
                 options={{
                     title: " ",
                     headerShown: false,
                     tabBarStyle: { height: 60, backgroundColor: '#eec06b' },
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <Image source={require("../assets/cart.png")} style={styles.IconSize} />
+                            <TouchableOpacity onPress={() => { navigation.navigate('cart') }}>
+                                <Image source={require("../assets/cart.png")} style={styles.IconSize} />
+                            </TouchableOpacity>
                         )
                     }
                 }} />
+
             {/* <Tab.Screen name='Delivery' component={Delivery}
                 options={{
                     title: " ",
@@ -62,6 +67,7 @@ const Tabs = () => {
                     }
                 }} /> */}
         </Tab.Navigator>
+            //    </ImageBackground>
     )
 }
 

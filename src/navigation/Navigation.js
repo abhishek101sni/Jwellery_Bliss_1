@@ -79,6 +79,9 @@ import GentsRingsCZ from '../Screens/Categories/SubCategories/CastingCzJwellery/
 import AboutUs from '../Screens/DrawerScreens/AboutUs';
 // import WastageChart from '../Screens/WastageChart';
 import WastageChart from '../Screens/WastageChart';
+import EighteenKarat from '../Screens/KaratScreens/EighteenKarat';
+import TwentyKarat from '../Screens/KaratScreens/TwentyKarat';
+import TwentytwokaratScreen from '../Screens/KaratScreens/TwentytwoKaratScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -176,11 +179,13 @@ const Navigation = () => {
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
 
+
+
                         <Stack.Screen
                             name="singleproduct"
                             component={SingleProduct}
                             options={{
-                                title: '',
+                                title: 'Product',
                                 headerStyle: { backgroundColor: 'black' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
@@ -190,7 +195,7 @@ const Navigation = () => {
                             name="product"
                             component={Product}
                             options={{
-                                title: '',
+                                title: 'Products',
                                 headerStyle: { backgroundColor: 'black' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
@@ -212,7 +217,7 @@ const Navigation = () => {
                             name="Manage"
                             component={ManageOrder}
                             options={{
-                                title: 'Orders',
+                                title: 'Manage Orders',
                                 headerShown: true,
                                 headerStyle: { backgroundColor: '#bc9954' },
                                 headerTintColor: 'black',
@@ -262,7 +267,7 @@ const Navigation = () => {
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
-                            
+
                         <Stack.Screen
                             name="ServiceAvailable"
                             component={ServiceAvailable}
@@ -286,7 +291,7 @@ const Navigation = () => {
                             name="pricelist"
                             component={PriceList}
                             options={{
-                                title: '',
+                                title: 'Wastage Chart',
                                 headerShown: true, headerStyle: { backgroundColor: 'black' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
@@ -295,7 +300,7 @@ const Navigation = () => {
                             name="goldscreen"
                             component={GoldScreen}
                             options={{
-                                title: '',
+                                title: 'Gold Coins',
                                 headerShown: true, headerStyle: { backgroundColor: 'black' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
@@ -304,7 +309,7 @@ const Navigation = () => {
                             name="silverscreen"
                             component={SilverScreen}
                             options={{
-                                title: '',
+                                title: 'Silver Coins',
                                 headerShown: true, headerStyle: { backgroundColor: 'black' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
@@ -866,8 +871,41 @@ const Navigation = () => {
                                 headerTintColor: 'black',
                                 headerTitleStyle: { color: 'black' }
                             }} />
-                    </>
 
+                        {/* CaratScreen */}
+                        <Stack.Screen
+                            name="eighteenkarat"
+                            component={EighteenKarat}
+                            options={{
+                                title: '18KT',
+                                headerShown: true,
+                                headerStyle: { backgroundColor: 'black' },
+                                headerTintColor: '#bc9954',
+                                headerTitleStyle: { color: '#bc9954' }
+                            }} />
+
+                        <Stack.Screen
+                            name="twentykarat"
+                            component={TwentyKarat}
+                            options={{
+                                title: '20KT',
+                                headerShown: true,
+                                headerStyle: { backgroundColor: 'black' },
+                                headerTintColor: '#bc9954',
+                                headerTitleStyle: { color: '#bc9954' }
+                            }} />
+
+                        <Stack.Screen
+                            name="twentytwokarat"
+                            component={TwentytwokaratScreen}
+                            options={{
+                                title: '22KT',
+                                headerShown: true,
+                                headerStyle: { backgroundColor: 'black' },
+                                headerTintColor: '#bc9954',
+                                headerTitleStyle: { color: '#bc9954' }
+                            }} />
+                    </>
                 ) : null
                 }
             </>
