@@ -1,6 +1,7 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import DrawerContent from '../Screens/DrawerContent';
+import { Dimensions } from 'react-native';
 
 import WelcomeScreen from '../Screens/DrawerScreens/WelcomeScreen'
 import OurProduct from '../Screens/DrawerScreens/OurProduct';
@@ -16,7 +17,11 @@ const DrawerNav = createDrawerNavigator()
 const Drawer = () => {
 
     return (
-        <DrawerNav.Navigator drawerContent={props => <DrawerContent {...props} />} >
+        <DrawerNav.Navigator drawerContent={props => <DrawerContent {...props} />} screenOptions={{
+            drawerStyle: {
+                width: Dimensions.get('window').width / 1.75,
+            },
+        }}>
             <DrawerNav.Screen name='Profile' component={WelcomeScreen} options={{
                 title: '',
                 headerStyle: { backgroundColor: 'black' },

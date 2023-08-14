@@ -1,32 +1,75 @@
-import React, { useEffect, useState } from 'react'
-import { Animated, ImageBackground, StyleSheet } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
-// import Logo from './src/assets/thank-you.png';
-import Logo from '../assets/thank-you.png';
+import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { Image } from 'react-native-animatable'
+import { moderateScale, moderateScaleVertical, height, textScale } from '../utils/responsive'
 
-const Thankyou = () => {
-
+const Thankyou = ({ navigation }) => {
   return (
-    <SafeAreaView style={styles.background} >
-      <Animated.View>
-        <ImageBackground style={styles.image} source={Logo} />
-      </Animated.View>
-    </SafeAreaView>
+    <ImageBackground style={{ flex: 1 }} source={require("../assets/background-image2.png")}>
+      <View style={styles.alignment}>
+        <Image source={require("../assets/green-tick.gif")} style={styles.imageSize} />
+        <View style={styles.colomnAlignment}>
+          <Text style={styles.ThankyouText}>Thank You!</Text>
+          <Text style={styles.OrderConfirmendText}>Your order is confirmed</Text>
+
+          <TouchableOpacity style={styles.logInButtonAlignment} onPress={() => navigation.navigate('welcomescreen')}>
+            <ImageBackground source={require("../assets/texture.png")} style={styles.ImageBackgroundStyle} imageStyle={{ borderRadius: 80 }}>
+              <Text style={styles.logInButtonText}>DONE</Text>
+            </ImageBackground>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ImageBackground>
   )
 }
 
 export default Thankyou;
 
 const styles = StyleSheet.create({
-  background: {
-    display: 'flex',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: ""
+  alignment: {
+    marginTop: moderateScaleVertical(120),
+    flexDirection: "colomn"
   },
-  image: {
-    width: 200,
-    height: 200,
-  }
+  imageSize: {
+    height: moderateScaleVertical(150),
+    width: moderateScale(150),
+    alignSelf: "center",
+    marginTop: moderateScaleVertical(100),
+  },
+  colomnAlignment: {
+    alignItems: "center"
+  },
+  ThankyouText: {
+    marginTop: moderateScaleVertical(40),
+    fontSize: textScale(25),
+    fontWeight: "400",
+  },
+  OrderConfirmendText: {
+    marginTop: moderateScaleVertical(5),
+    fontSize: textScale(25),
+    fontWeight: "700",
+    color: "#353839"
+  },
+  logInButtonAlignment: {
+    alignItems: "center",
+    // fontFamily: "Poppins-Medium",
+    marginBottom: moderateScaleVertical(10),
+  },
+  ImageBackgroundStyle: {
+    alignItems: "center",
+    padding: moderateScale(7),
+    width: moderateScale(130),
+    height: moderateScaleVertical(50),
+    justifyContent: 'center',
+    marginTop: moderateScaleVertical(40),
+    fontFamily: "Poppins-Medium"
+  },
+  logInButtonText: {
+    fontSize: textScale(15),
+    color: "black",
+    marginLeft: moderateScale(0),
+    borderRadius: 40,
+    paddingTop: moderateScaleVertical(1),
+    // fontFamily: "Poppins-Medium"
+  },
 })

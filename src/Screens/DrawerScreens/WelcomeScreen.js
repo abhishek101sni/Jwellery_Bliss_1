@@ -1,16 +1,18 @@
-import { View, Text, Dimensions, ScrollView, StyleSheet, TouchableOpacity, Image, ImageBackground, Modal } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
+import SimpleModal from '../SimpleModal';
 import MarqueeView from "react-native-marquee-view";
-import { useNavigation } from '@react-navigation/native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import { View, Text, Dimensions, ScrollView, StyleSheet, TouchableOpacity, Image, ImageBackground, Modal } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../AuthContext';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserDetailsActionCreator } from '../../redux/Formdetails/formDetails.action-creator';
-import axios from 'axios';
-import SimpleModal from '../SimpleModal';
 import { height, moderateScale, moderateScaleVertical, textScale } from '../../utils/responsive'
+import { SliderBox } from "react-native-image-slider-box"
+// import { Modal } from "react-native-modal"
 
 const WelcomeScreen = () => {
+    const [visible, setVisible] = useState(false)
     // WhatsApp
     const [isModalVisible, setisModalVisible] = useState(false)
     const [chooseData, setChooseData] = useState();
@@ -23,6 +25,8 @@ const WelcomeScreen = () => {
     const setData = (data) => {
         setChooseData(data)
     }
+
+
     // WhatsApp
 
     const { logout, userToken, userInfo } = useContext(AuthContext);
@@ -96,9 +100,18 @@ const WelcomeScreen = () => {
             }
         },
     ];
+
+    // image Slider box
+    const slides = [
+        require('../../assets/CZ_RING_2.jpg'),
+        require('../../assets/CZ_RING_2.jpg'),
+        require('../../assets/CZ_RING_2.jpg'),
+        require('../../assets/CZ_RING_2.jpg'),
+]
+
     const renderItem2 = ({ item, index }) => {
         return (
-            <TouchableOpacity onPress={item.onPress}>
+            <TouchableOpacity activeOpacity={0.8} onPress={item.onPress}>
                 <Image
                     source={item.img}
                     style={{
@@ -124,7 +137,7 @@ const WelcomeScreen = () => {
                 </View>
 
                 <View >
-                    <ImageBackground style={styles.MainBackGroundImage} imageStyle={{ borderRadius: 40 }} source={require("../../assets/texture.png")} >
+                    <ImageBackground style={styles.MainBackGroundImage} imageStyle={{ borderRadius: 40 }} source={require("../../assets/CompressedTexture3.jpg")} >
 
                         <View style={styles.GoldenBackGroundImage}>
 
@@ -136,7 +149,10 @@ const WelcomeScreen = () => {
                             <Text style={styles.WelcomeText}>Welcome,</Text>
                             <Text style={styles.UserName}>{userInfo?.name}</Text>
                             <Text style={styles.UserBrandName}>{userDetails?.brandName}</Text>
-                            <View style={{ marginTop: 20 }}>
+                            <View style={styles.userCountStyle}>
+                                <Text style={styles.UserCount}>JB 00{userInfo?.userCount}</Text>
+                            </View>
+                            <View style={{ marginTop: moderateScaleVertical(5) }}>
                                 <Text style={styles.GoldenScreenBelowText}>Welcome to our app!We have thrilled to have you here.</Text>
                                 <View style={{ flexDirection: "row" }}>
                                     <Text style={styles.GoldenScreenBelowText}>Enjoy Shopping! </Text>
@@ -147,36 +163,45 @@ const WelcomeScreen = () => {
                     </ImageBackground>
                 </View>
 
-                <MarqueeView>
-                    <View style={styles.MarqueeAlignment}>
-                        <Text style={{ color: "#404040" }}>
-                            Price 18K: | Fine rate: red | Gold MCX: Rs 50,000 995
-                            rate: Rs 45,000 | Fine rate: rs720000 | Gold MCX: Rs 50,000
-                        </Text>
+                <View style={styles.wholeAlignment}>
+                    <View style={{ backgroundColor: "#F0F0F0", height: moderateScaleVertical(20), marginTop: moderateScaleVertical(10), alignItems: "center" }}>
+                        <TouchableOpacity onPress={() => { setVisible(true) }} >
+                            <MarqueeView>
+                                <View style={styles.MarqueeAlignment}>
+                                    <Text style={{ color: "#404040" }}>
+                                        Price 18K: | Fine rate: red | Gold MCX: Rs 50,000 995
+                                        rate: Rs 45,000 | Fine rate: rs720000 | Gold MCX: Rs 50,000
+                                    </Text>
+                                </View>
+                            </MarqueeView>
+                        </TouchableOpacity>
                     </View>
-                </MarqueeView>
+
+
+
+                </View>
 
                 <View style={styles.GoldenCategoriesButtonsAlignment}>
 
                     <View>
-                        <TouchableOpacity onPress={() => navigation.navigate('eighteenkarat')}>
-                            <ImageBackground source={require("../../assets/texture.png")} style={styles.GoldenCategoriesButtonsStyle} imageStyle={{ borderRadius: 12 }}>
+                        <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate('eighteenkarat')}>
+                            <ImageBackground source={require("../../assets/CompressedTexture3.jpg")} style={styles.GoldenCategoriesButtonsStyle} imageStyle={{ borderRadius: 12 }}>
                                 <Text style={styles.GoldenCategoriesButtonsText}>18KT</Text>
                             </ImageBackground>
                         </TouchableOpacity>
                     </View>
 
                     <View>
-                        <TouchableOpacity onPress={() => navigation.navigate('twentykarat')}>
-                            <ImageBackground source={require("../../assets/texture.png")} style={styles.GoldenCategoriesButtonsStyle} imageStyle={{ borderRadius: 12 }}>
+                        <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate('twentykarat')}>
+                            <ImageBackground source={require("../../assets/CompressedTexture3.jpg")} style={styles.GoldenCategoriesButtonsStyle} imageStyle={{ borderRadius: 12 }}>
                                 <Text style={styles.GoldenCategoriesButtonsText}>20KT</Text>
                             </ImageBackground>
                         </TouchableOpacity>
                     </View>
 
                     <View>
-                        <TouchableOpacity onPress={() => navigation.navigate('twentytwokarat')}>
-                            <ImageBackground source={require("../../assets/texture.png")} style={styles.GoldenCategoriesButtonsStyle} imageStyle={{ borderRadius: 12 }}>
+                        <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate('twentytwokarat')}>
+                            <ImageBackground source={require("../../assets/CompressedTexture3.jpg")} style={styles.GoldenCategoriesButtonsStyle} imageStyle={{ borderRadius: 12 }}>
                                 <Text style={styles.GoldenCategoriesButtonsText}>22KT</Text>
                             </ImageBackground>
                         </TouchableOpacity>
@@ -199,22 +224,42 @@ const WelcomeScreen = () => {
                     </View> */}
                 </View>
 
-                <View style={styles.WastageChartButton}>
-                    <TouchableOpacity onPress={() => navigation.navigate('pricelist')}>
+                <TouchableOpacity activeOpacity={0.8} onPress={() => navigation.navigate('pricelist')}>
+                    <View style={styles.WastageChartButton}>
                         <Text style={styles.buttontext}>WASTAGE CHART</Text>
-                    </TouchableOpacity>
-                </View>
+                    </View>
+                </TouchableOpacity>
+
+
+                <SliderBox
+                    images={slides}
+                    dotColor="#eec06b"
+                    inactiveDotColor="black"
+                    circleLoop
+                    paginationBoxVerticalPadding={20}
+                    dotStyle={{
+                        width: moderateScale(7),
+                        height: moderateScaleVertical(7),
+                        borderRadius: 20,
+                        marginHorizontal: moderateScale(-3),
+                        padding: 0,
+                        margintTop: moderateScaleVertical(400)
+                    }}
+                    ImageComponentStyle={{ borderRadius: 30, width: '90%', marginTop: 15 }}
+                />
 
                 {/* // Parallax */}
-                <Carousel
+                
+                {/* <Carousel
                     data={entries2}
                     renderItem={renderItem2}
                     sliderWidth={width}
                     itemWidth={300}
                     loop
                     firstItem={1}
-                />
+                /> */}
 
+                {/* Banner */}
                 <Carousel
                     data={entries}
                     renderItem={renderItem}
@@ -244,7 +289,7 @@ const WelcomeScreen = () => {
             </ScrollView>
 
             {/* Whatsapp */}
-            <View style={{ bottom: -90, position: "absolute", right: 20 }}>
+            <View style={{ bottom: moderateScaleVertical(-90), position: "absolute", right: moderateScale(20) }}>
                 <TouchableOpacity onPress={() => changeModalVisible(true)} style={styles.HelpButtonAlignment} >
                     <View style={styles.icontextAlignment}>
                         <Image source={require("../../assets/whatsapp-white.png")} style={styles.whatsappIcon} />
@@ -307,6 +352,24 @@ const styles = StyleSheet.create({
         fontSize: textScale(14),
         fontWeight: "500"
     },
+    UserCount: {
+        color: "black",
+        fontSize: textScale(12),
+        fontWeight: "500",
+        marginLeft: moderateScale(2),
+        // textAlign:"center"
+    },
+    userCountStyle: {
+        // backgroundColor: "black",
+        borderRadius: 9,
+        borderWidth: moderateScale(0.5),
+        width: moderateScale(80),
+        height: moderateScaleVertical(20),
+        marginLeft: moderateScale(0),
+        // opacity: 0.1x`
+        marginTop: moderateScaleVertical(5)
+    },
+
     NotificationBell: {
         width: moderateScale(30),
         height: moderateScaleVertical(30),
@@ -321,8 +384,8 @@ const styles = StyleSheet.create({
         height: moderateScaleVertical(14),
     },
     MarqueeAlignment: {
-        marginTop: moderateScaleVertical(10),
-        color: "#fff"
+        // marginTop: moderateScaleVertical(10),
+        // color: "#fff"
     },
     GoldenCategoriesButtonsAlignment: {
         flexDirection: "row",
@@ -336,7 +399,7 @@ const styles = StyleSheet.create({
         width: moderateScale(60),
         height: moderateScaleVertical(60),
         marginTop: moderateScaleVertical(10),
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     GoldenCategoriesButtonsText: {
         fontSize: textScale(12),
@@ -442,6 +505,41 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: textScale(13),
         fontWeight: "bold",
+    },
+    // bottomSheet
+
+    wholeAlignment: {
+        // flex: 1,
+        // justifyContent: "center",
+        // alignItems: "center"
+    },
+    buttonStyleText: {
+        color: "white",
+        alignSelf: "center",
+        fontSize: textScale(30)
+    },
+    buttonStyle: {
+        backgroundColor: "black",
+        width: 120,
+        height: 120,
+        alignSelf: "center",
+        justifyContent: "center",
+        marginTop: 50,
+        borderRadius: 40
+    },
+    Modalalignment: {
+        width: "100%",
+        marginLeft: 0,
+        marginBottom: 0
+    },
+    modalaView: {
+        position: "absolute",
+        bottom: 0,
+        height: 200,
+        backgroundColor: "#fff",
+        width: "100%",
+        right: 0,
+        left: 0
     }
 });
 

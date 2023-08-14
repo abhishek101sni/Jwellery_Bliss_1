@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, Image, TouchableOpacity, ScrollView, FlatList, Modal } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView, FlatList, Modal, ImageBackground } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { height, moderateScale, moderateScaleVertical, textScale } from '../../utils/responsive'
 import SimpleModal from '../SimpleModal';
@@ -21,14 +21,17 @@ const PlainJwellery = ({ navigation }) => {
   // WhatsApp
 
   return (
-    <View style={{ backgroundColor: "black", flex: 1 }}>
+    <View style={{ backgroundColor: "#181818", flex: 1 }}>
       <ScrollView>
         <View style={styles.alignment}>
           <View style={styles.View2}>
             <TouchableOpacity onPress={() => { navigation.navigate('SetsPJ') }}>
               <View style={styles.View3}>
                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
-                <Text style={styles.View5}>SETS</Text>
+                {/* <Text style={styles.View5}>SETS</Text> */}
+                <ImageBackground imageStyle={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }} style={styles.View5} source={require("../../assets/CompressedTexture3.jpg")}>
+                  <Text style={{ color: "black", fontWeight: "600", fontSize: textScale(11) }}>SETS</Text>
+                </ImageBackground>
               </View>
             </TouchableOpacity>
           </View>
@@ -37,7 +40,10 @@ const PlainJwellery = ({ navigation }) => {
             <TouchableOpacity onPress={() => { navigation.navigate('MangalSutrapj') }}>
               <View style={styles.View3}>
                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
-                <Text style={styles.View5}>MANGAL SUTRA</Text>
+                {/* <Text style={styles.View5}>MANGAL SUTRA</Text> */}
+                <ImageBackground imageStyle={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }} style={styles.View5} source={require("../../assets/CompressedTexture3.jpg")}>
+                  <Text style={{ color: "black", fontWeight: "600", fontSize: textScale(11) }}>MANGAL SUTRA</Text>
+                </ImageBackground>
               </View>
             </TouchableOpacity>
           </View>
@@ -48,7 +54,10 @@ const PlainJwellery = ({ navigation }) => {
             <TouchableOpacity onPress={() => { navigation.navigate('TopsPJ') }}>
               <View style={styles.View3}>
                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
-                <Text style={styles.View5}>TOPS</Text>
+                {/* <Text style={styles.View5}>TOPS</Text> */}
+                <ImageBackground imageStyle={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }} style={styles.View5} source={require("../../assets/CompressedTexture3.jpg")}>
+                  <Text style={{ color: "black", fontWeight: "600", fontSize: textScale(11) }}>TOPS</Text>
+                </ImageBackground>
               </View>
             </TouchableOpacity>
           </View>
@@ -56,7 +65,10 @@ const PlainJwellery = ({ navigation }) => {
             <TouchableOpacity onPress={() => { navigation.navigate('HandmadeLadiesRing') }}>
               <View style={styles.View3}>
                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
-                <Text style={styles.View5}>HANDMADE LADIES RING</Text>
+                {/* <Text style={styles.View5}>HANDMADE LADIES RING</Text> */}
+                <ImageBackground imageStyle={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }} style={styles.View5} source={require("../../assets/CompressedTexture3.jpg")}>
+                  <Text style={{ color: "black", fontWeight: "600", fontSize: textScale(11) }}>HANDMADE LADIES RING</Text>
+                </ImageBackground>
               </View>
             </TouchableOpacity>
           </View>
@@ -66,7 +78,10 @@ const PlainJwellery = ({ navigation }) => {
             <TouchableOpacity onPress={() => { navigation.navigate('HandmadeGentsRing') }}>
               <View style={styles.View3}>
                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
-                <Text style={styles.View5}>HANDMADE GENTS RING</Text>
+                {/* <Text style={styles.View5}>HANDMADE GENTS RING</Text> */}
+                <ImageBackground imageStyle={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }} style={styles.View5} source={require("../../assets/CompressedTexture3.jpg")}>
+                  <Text style={{ color: "black", fontWeight: "600", fontSize: textScale(11) }}>HANDMADE GENTS RING</Text>
+                </ImageBackground>
               </View>
             </TouchableOpacity>
           </View>
@@ -74,7 +89,10 @@ const PlainJwellery = ({ navigation }) => {
             <TouchableOpacity onPress={() => { navigation.navigate('Bracelets') }}>
               <View style={styles.View3}>
                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
-                <Text style={styles.View5}>BRACELETS</Text>
+                {/* <Text style={styles.View5}>BRACELETS</Text> */}
+                <ImageBackground imageStyle={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }} style={styles.View5} source={require("../../assets/CompressedTexture3.jpg")}>
+                  <Text style={{ color: "black", fontWeight: "600", fontSize: textScale(11) }}>BRACELETS</Text>
+                </ImageBackground>
               </View>
             </TouchableOpacity>
           </View>
@@ -84,7 +102,10 @@ const PlainJwellery = ({ navigation }) => {
             <TouchableOpacity onPress={() => { navigation.navigate('UvShapedBaliPJ') }}>
               <View style={styles.View3}>
                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
-                <Text style={styles.View5}>UV SHAPED BALI</Text>
+                {/* <Text style={styles.View5}>UV SHAPED BALI</Text> */}
+                <ImageBackground imageStyle={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }} style={styles.View5} source={require("../../assets/CompressedTexture3.jpg")}>
+                  <Text style={{ color: "black", fontWeight: "600", fontSize: textScale(11) }}>UV SHAPED BALI</Text>
+                </ImageBackground>
               </View>
             </TouchableOpacity>
           </View>
@@ -92,7 +113,10 @@ const PlainJwellery = ({ navigation }) => {
             <TouchableOpacity onPress={() => { navigation.navigate('RajkotItems') }}>
               <View style={styles.View3}>
                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
-                <Text style={styles.View5}>RAJKOT ITEMS</Text>
+                {/* <Text style={styles.View5}>RAJKOT ITEMS</Text> */}
+                <ImageBackground imageStyle={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }} style={styles.View5} source={require("../../assets/CompressedTexture3.jpg")}>
+                  <Text style={{ color: "black", fontWeight: "600", fontSize: textScale(11) }}>RAJKOT ITEMS</Text>
+                </ImageBackground>
               </View>
             </TouchableOpacity>
           </View>
@@ -102,7 +126,10 @@ const PlainJwellery = ({ navigation }) => {
             <TouchableOpacity onPress={() => { navigation.navigate('LongSets') }} >
               <View style={styles.View3}>
                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
-                <Text style={styles.View5}>LONG SETS</Text>
+                {/* <Text style={styles.View5}>LONG SETS</Text> */}
+                <ImageBackground imageStyle={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }} style={styles.View5} source={require("../../assets/CompressedTexture3.jpg")}>
+                  <Text style={{ color: "black", fontWeight: "600", fontSize: textScale(11) }}>LONG SETS</Text>
+                </ImageBackground>
               </View>
             </TouchableOpacity>
           </View>
@@ -110,7 +137,10 @@ const PlainJwellery = ({ navigation }) => {
             <TouchableOpacity onPress={() => { navigation.navigate('ChokerSets') }} >
               <View style={styles.View3}>
                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
-                <Text style={styles.View5}>CHOKER SETS</Text>
+                {/* <Text style={styles.View5}>CHOKER SETS</Text> */}
+                <ImageBackground imageStyle={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }} style={styles.View5} source={require("../../assets/CompressedTexture3.jpg")}>
+                  <Text style={{ color: "black", fontWeight: "600", fontSize: textScale(11) }}>CHOKER SETS</Text>
+                </ImageBackground>
               </View>
             </TouchableOpacity>
           </View>
@@ -120,7 +150,10 @@ const PlainJwellery = ({ navigation }) => {
             <TouchableOpacity onPress={() => { navigation.navigate('Bangels') }}>
               <View style={styles.View3}>
                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
-                <Text style={styles.View5}>BANGELS</Text>
+                {/* <Text style={styles.View5}>BANGELS</Text> */}
+                <ImageBackground imageStyle={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }} style={styles.View5} source={require("../../assets/CompressedTexture3.jpg")}>
+                  <Text style={{ color: "black", fontWeight: "600", fontSize: textScale(11) }}>BANGELS</Text>
+                </ImageBackground>
               </View>
             </TouchableOpacity>
           </View>
@@ -128,7 +161,10 @@ const PlainJwellery = ({ navigation }) => {
             <TouchableOpacity onPress={() => { navigation.navigate('Kade') }}>
               <View style={styles.View3}>
                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
-                <Text style={styles.View5}>KADE</Text>
+                {/* <Text style={styles.View5}>KADE</Text> */}
+                <ImageBackground imageStyle={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }} style={styles.View5} source={require("../../assets/CompressedTexture3.jpg")}>
+                  <Text style={{ color: "black", fontWeight: "600", fontSize: textScale(11) }}>KADE</Text>
+                </ImageBackground>
               </View>
             </TouchableOpacity>
           </View>
@@ -138,7 +174,10 @@ const PlainJwellery = ({ navigation }) => {
             <TouchableOpacity onPress={() => { navigation.navigate('GoldPendent') }}>
               <View style={styles.View3}>
                 <Image style={styles.ImageView} source={require("../../assets/coming_soon.png")} />
-                <Text style={styles.View5}>GOLD PENDENTS</Text>
+                {/* <Text style={styles.View5}>GOLD PENDENTS</Text> */}
+                <ImageBackground imageStyle={{ borderBottomLeftRadius: 20, borderBottomRightRadius: 20 }} style={styles.View5} source={require("../../assets/CompressedTexture3.jpg")}>
+                  <Text style={{ color: "black", fontWeight: "600", fontSize: textScale(11) }}>GOLD PENDENTS</Text>
+                </ImageBackground>
               </View>
             </TouchableOpacity>
           </View>
@@ -196,7 +235,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-    width: moderateScale(150),
+    width: moderateScale(153),
     height: moderateScaleVertical(180)
   },
   View3: {
@@ -210,10 +249,10 @@ const styles = StyleSheet.create({
     borderRadius: 35,
   },
   View5: {
+    alignItems: "center",
     height: moderateScaleVertical(40),
-    width: moderateScale(150),
+    width: moderateScale(153),
     color: 'black',
-    paddingTop: 13,
     backgroundColor: '#ECC440',
     textAlign: 'center',
     borderBottomLeftRadius: 20,

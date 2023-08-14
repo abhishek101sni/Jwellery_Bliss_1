@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
   AboutUsContent: {
     marginTop: moderateScaleVertical(15),
-    color: "black",
+    color: "#181818",
     fontFamily: "Poppins-Medium",
     marginHorizontal: 15,
     fontSize: textScale(17),

@@ -14,7 +14,7 @@ const ViewProfile = () => {
             {/* <View style={{ backgroundColor: "#eec06b" }}> */}
             <ScrollView>
                 <View style={{ alignItems: "center" }}>
-                    <Image source={require("../assets/dp.jpg")} style={{ width: moderateScale(140), height: moderateScaleVertical(140), borderRadius: 100, marginTop: moderateScaleVertical(20) }} />
+                    <Image source={require("../assets/dp2.jpg")} style={{ width: moderateScale(140), height: moderateScaleVertical(140), borderRadius: 100, marginTop: moderateScaleVertical(20) }} />
                     <Text style={{ fontSize: textScale(25), marginTop: moderateScaleVertical(20), fontWeight: "bold", color: "black" }}>{userInfo?.name}</Text>
                 </View>
 

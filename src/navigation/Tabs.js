@@ -14,8 +14,7 @@ const Tabs = ({ navigation }) => {
     const Tab = createBottomTabNavigator();
     return (
 
-            // <ImageBackground style={{}} source={require("../assets/textureHD.jpg")}>
-        <Tab.Navigator>
+        <Tab.Navigator  >
             <Tab.Screen
                 name='Home'
                 component={Drawer}
@@ -67,7 +66,6 @@ const Tabs = ({ navigation }) => {
                     }
                 }} /> */}
         </Tab.Navigator>
-            //    </ImageBackground>
     )
 }
 
@@ -78,5 +76,6 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         resizeMode: "cover",
+        paddingBottom: 30,
     },
 })

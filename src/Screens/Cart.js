@@ -55,14 +55,9 @@ const Cart = ({ navigation }) => {
     if (!cart.length) {
         return (
             <ImageBackground source={require("../assets/background-image2.png")} style={{ flex: 1 }}>
-
-                <ImageBackground imageStyle={{ marginLeft: moderateScale(40), marginTop: moderateScaleVertical(150), borderRadius: 20, flex: 1, height: 250, width: 350 }} source={require("../assets/texture.png")}>
-                    <Image source={require("../assets/empty-cart.png")} style={{ width: moderateScale(150), height: moderateScaleVertical(150), alignSelf: "center", marginTop: moderateScale(180) }} />
-                    <Text style={{ textAlign: "center", fontSize: textScale(25), color: "black", marginTop: moderateScale(10) }}>Cart is Empty!!!!</Text>
-                </ImageBackground>
-
-            </ImageBackground>
-        )
+                <Image source={require("../assets/emptyCarting.gif")} style={styles.emptyCartSize} />
+                <Text style={{ fontSize: 25, color: "black", alignSelf: "center", fontWeight: "500" }}>Oops!! Cart is Empty... </Text>
+            </ImageBackground>)
     }
 
     return (
@@ -120,7 +115,7 @@ const Cart = ({ navigation }) => {
                                     <Text style={styles.TotalSubChildAlignment2}>{total}</Text>
                                     <Text style={styles.TotalSubChildAlignment2}>000.00</Text>
                                     <Text style={styles.TotalSubChildAlignment2}>000.00</Text>
-                                    <Text style={styles.TotalSubChildAlignment2}>1000.00</Text>
+                                    <Text style={styles.TotalSubChildAlignment2}>000.00</Text>
                                     <Text style={styles.TotalSubChildAlignment20}>{grandTotal}</Text>
                                 </View>
                             </View>
@@ -135,8 +130,15 @@ const Cart = ({ navigation }) => {
                                     </TouchableOpacity>
                                 </View>
 
-                                <View>
+                                {/* <View>
                                     <TouchableOpacity onPress={showMsg} style={styles.logInButtonAlignment}>
+                                        <ImageBackground source={require("../assets/texture.png")} style={styles.ImageBackgroundStyle} imageStyle={{ borderRadius: 80 }}>
+                                            <Text style={styles.logInButtonText}>PLACE ORDER</Text>
+                                        </ImageBackground>
+                                    </TouchableOpacity>
+                                </View> */}
+                                <View>
+                                    <TouchableOpacity onPress={() => navigation.navigate('confimrorder')} style={styles.logInButtonAlignment}>
                                         <ImageBackground source={require("../assets/texture.png")} style={styles.ImageBackgroundStyle} imageStyle={{ borderRadius: 80 }}>
                                             <Text style={styles.logInButtonText}>PLACE ORDER</Text>
                                         </ImageBackground>
@@ -224,6 +226,12 @@ const styles = StyleSheet.create({
         // height: moderateScaleVertical(300),
         // marginLeft: moderateScale(40),
     },
+    emptyCartSize: {
+        alignSelf: "center",
+        marginTop: moderateScaleVertical(300),
+        width: moderateScale(100),
+        height: moderateScaleVertical(100)
+    },
     goldenStrip: {
         borderWidth: moderateScale(3),
         width: moderateScale(1100),
@@ -233,6 +241,12 @@ const styles = StyleSheet.create({
         marginTop: moderateScaleVertical(15),
         width: moderateScale(340),
         height: moderateScaleVertical(120),
+        alignSelf: "center",
+    },
+    MainBackGroundImage2: {
+        marginTop: moderateScaleVertical(300),
+        width: moderateScale(300),
+        height: moderateScaleVertical(250),
         alignSelf: "center",
     },
     CArtBoxAlignment: {
@@ -652,21 +666,21 @@ const styles = StyleSheet.create({
         marginBottom: moderateScaleVertical(20),
     },
     logInButtonText: {
-        fontSize: textScale(10),
+        fontSize: textScale(12),
         color: "black",
         paddingTop: moderateScaleVertical(4),
-        fontFamily: "Poppins-Medium",
-        fontWeight: "700"
+        // fontFamily: "Poppins-Medium",
+        fontWeight: "600"
 
     },
     ImageBackgroundStyle: {
         alignItems: "center",
         // padding: moderateScale(15),
         width: moderateScale(150),
-        height: moderateScaleVertical(30),
+        height: moderateScaleVertical(50),
         justifyContent: 'center',
         marginTop: moderateScaleVertical(40),
-        fontFamily: "Poppins-Medium"
+        // fontFamily: "Poppins-Medium"
     },
     // Whatsapp style
 

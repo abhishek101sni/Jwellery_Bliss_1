@@ -6,12 +6,14 @@ import "react-native-gesture-handler";
 import WaitSplash from './src/Screens/WaitSplash'
 import FlashMessage from 'react-native-flash-message'
 import { StyleSheet } from 'react-native'
+import { NativeBaseProvider } from 'native-base';
 import { moderateScale, moderateScaleVertical, textScale } from './src/utils/responsive';
+
 const App = () => {
   const { isLoading } = useContext(AuthContext);
 
   if (isLoading) {
-    return <WaitSplash />;
+    return <WaitSplash />
   } else
     return (
       <Navigation />
@@ -22,10 +24,12 @@ const App = () => {
 export default () => {
   return (
     <NavigationContainer >
-      <AuthProvider>
-        <App />
-        <FlashMessage position="top" style={styles.FlashMessage} titleStyle={{ fontWeight: 'bold', fontSize: 15, color: "black", justifyContent: "center", alignItems: "center" }} />
-      </AuthProvider>
+      <NativeBaseProvider>
+        <AuthProvider>
+          <App />
+          <FlashMessage position="top" style={styles.FlashMessage} titleStyle={{ fontWeight: 'bold', fontSize: 15, color: "black", justifyContent: "center", alignItems: "center" }} />
+        </AuthProvider>
+      </NativeBaseProvider>
     </NavigationContainer>
   );
 };

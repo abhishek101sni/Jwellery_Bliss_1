@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, Switch, ScrollView, StyleSheet, Text, View, Modal,TouchableOpacity, ImageBackground, Image } from "react-native";
+import { SafeAreaView, Switch, ScrollView, StyleSheet, Text, View, Modal, TouchableOpacity, ImageBackground, Image } from "react-native";
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from "../redux/action";
 import { height, moderateScale, moderateScaleVertical, textScale } from '../utils/responsive'
@@ -24,6 +24,7 @@ const SELECTORS = [
 ];
 
 const SingleProduct = ({ navigation }) => {
+
     // WhatsApp
     const [isModalVisible, setisModalVisible] = useState(false)
     const [chooseData, setChooseData] = useState();
@@ -37,6 +38,8 @@ const SingleProduct = ({ navigation }) => {
         setChooseData(data)
     }
     // WhatsApp
+
+
     const dispatch = useDispatch();
     const { activeItem } = useSelector((state) => state.reducer);
 
@@ -74,7 +77,7 @@ const SingleProduct = ({ navigation }) => {
     const renderContent = (section, _, isActive) => {
         return (
             <View style={[styles.content, isActive ? styles.active : styles.inactive]}>
-                <View style={{ marginVertical: moderateScaleVertical(-4), marginBottom: 50 }}>
+                <View style={{ marginVertical: moderateScaleVertical(-4), marginBottom: moderateScaleVertical(50) }}>
                     <Text style={{ fontSize: 15, color: "#757575", marginVertical: moderateScaleVertical(3), }}>Gross Weight</Text>
                     <Text style={{ fontSize: 15, color: "#757575", marginVertical: moderateScaleVertical(3), }}>Net Weight</Text>
                     <Text style={{ fontSize: 15, color: "#757575", marginVertical: moderateScaleVertical(3), }}>Tunch</Text>
@@ -114,42 +117,6 @@ const SingleProduct = ({ navigation }) => {
                     </ImageBackground>
                 </View>
 
-                {/* <View style={styles.View2}>
-                    <Text style={styles.View3}>Size-</Text>
-                    <TouchableOpacity>
-                        <Text style={styles.View4}>2.5</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Text style={styles.View3}>3.0</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Text style={styles.View3} >3.5</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity >
-                        <Text style={styles.View3}>4.0</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Text style={styles.View3}>4.5</Text>
-                    </TouchableOpacity>
-                </View> */}
-                {/* <View style={styles.View5}>
-                    <Text style={styles.View60}>Ratings</Text>
-                    <TouchableOpacity style={{ flexDirection: 'row' }}>
-                        <Text style={styles.View6}>⭐</Text>
-                        <Text style={styles.View6}>⭐</Text>
-                        <Text style={styles.View6}>⭐</Text>
-                        <Text style={styles.View6}>⭐</Text>
-                        <Text style={styles.View6}>⭐</Text>
-                    </TouchableOpacity>
-                    <Text style={styles.View60}>4.5</Text>
-                </View> */}
-                {/* <TouchableOpacity onPress={() => handlePress(activeItem)}>
-                    <View style={styles.loginbutton}>
-                        <Text style={styles.logintext}>ADD TO CART</Text>
-                    </View>
-                </TouchableOpacity> */}
-                {/* -------------------------------------------------- */}
-
                 <View>
                     <TouchableOpacity onPress={() => handlePress(activeItem)} style={styles.AddToCartButtonAlignment}>
                         <ImageBackground source={require("../assets/texture.png")} style={styles.AddToCartImageBackgroundStyle} imageStyle={{ borderRadius: 80 }}>
@@ -184,7 +151,7 @@ const SingleProduct = ({ navigation }) => {
                         </View>
                     </View>
                 </View>
-                <View style={styles.selectors}>
+                {/* <View style={styles.selectors}>
                     {SELECTORS.map((selector) => (
                         <TouchableOpacity
                             key={selector.title}
@@ -213,19 +180,53 @@ const SingleProduct = ({ navigation }) => {
                     renderContent={renderContent}
                     duration={400}
                     onChange={setSections}
-                />
+                /> */}
+
+                <View style={{ marginTop: moderateScaleVertical(10) }}>
+                    <View style={{ borderBottomWidth: 1.5, borderBottomColor: "black", alignSelf: "center", width: moderateScale(260) }}>
+                        <Text style={{ color: "black", alignSelf: "center", padding: 5, fontSize: textScale(18), fontWeight: "600" }}>Product Specification</Text>
+                    </View>
+                </View>
+                {/* <View style={styles.content}> */}
+                <View style={{
+                    padding: 10,
+                    backgroundColor: "white",
+                    height: moderateScaleVertical(150),
+                    width: moderateScale(260),
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                    marginHorizontal: moderateScale(30),
+                    alignSelf: "center"
+                }}>
+                    <View style={{ marginVertical: moderateScaleVertical(-4), marginBottom: moderateScaleVertical(50) }}>
+                        <Text style={{ fontSize: textScale(14), color: "#757575", marginVertical: moderateScaleVertical(3), }}>Gross Weight</Text>
+                        <Text style={{ fontSize: textScale(14), color: "#757575", marginVertical: moderateScaleVertical(3), }}>Net Weight</Text>
+                        <Text style={{ fontSize: textScale(14), color: "#757575", marginVertical: moderateScaleVertical(3), }}>Tunch</Text>
+                        <Text style={{ fontSize: textScale(14), color: "#757575", marginVertical: moderateScaleVertical(3), }}>Wastage</Text>
+                        <Text style={{ fontSize: textScale(14), color: "#757575", marginVertical: moderateScaleVertical(3), }}>Fine Weight</Text>
+                    </View>
+                    <View style={{ marginVertical: moderateScaleVertical(-4) }}>
+                        <Text style={{ fontSize: textScale(14), color: "black", marginVertical: moderateScaleVertical(3), }}>20.0 gm</Text>
+                        <Text style={{ fontSize: textScale(14), color: "black", marginVertical: moderateScaleVertical(3), }}>2.0 gm</Text>
+                        <Text style={{ fontSize: textScale(14), color: "black", marginVertical: moderateScaleVertical(3), }}>23.0 gm</Text>
+                        <Text style={{ fontSize: textScale(14), color: "black", marginVertical: moderateScaleVertical(3), }}>90.0 gm</Text>
+                        <Text style={{ fontSize: textScale(14), color: "black", marginVertical: moderateScaleVertical(3), }}>12.0 gm</Text>
+                    </View>
+                </View>
+                {/* </View> */}
 
 
-
-                <View style={{ top: height - 7, }}>
+                <View style={{ top: height - 100, }}>
                     <Image source={require("../assets/GOLDEN-STRIP.png")} style={{
                         borderWidth: 3,
                         width: moderateScale(431),
                     }} />
                 </View>
             </ScrollView>
+
             {/* Whatsapp */}
-            <View style={{ bottom: 70, position: "absolute", right:7 }}>
+
+            <View style={{ bottom: 70, position: "absolute", right: 7 }}>
                 <TouchableOpacity onPress={() => changeModalVisible(true)} style={styles.HelpButtonAlignment} >
                     <View style={styles.icontextAlignment}>
                         <Image source={require("../assets/whatsapp-white.png")} style={styles.whatsappIcon} />
@@ -245,6 +246,7 @@ const SingleProduct = ({ navigation }) => {
                 </Modal>
             </View>
             {/* Whatsapp */}
+
         </ImageBackground>
     )
 }
@@ -467,12 +469,14 @@ const styles = StyleSheet.create({
         color: "black",
     },
     content: {
+        backgroundColor: "white",
+        height: moderateScaleVertical(150),
+        width: moderateScale(280),
+        alignSelf: "center",
         padding: 20,
-        // backgroundColor: '#fff',
         flexDirection: "row",
         justifyContent: "space-around",
         marginHorizontal: moderateScale(-30),
-        // width:moderateScale(350)
     },
     selectors: {
         marginBottom: 10,
@@ -507,9 +511,9 @@ const styles = StyleSheet.create({
         height: moderateScaleVertical(15)
     },
 
-     // Whatsapp style
+    // Whatsapp style
 
-     HelpButtonAlignment: {
+    HelpButtonAlignment: {
         justifyContent: "center",
         backgroundColor: "#25D366",
         width: moderateScale(110),

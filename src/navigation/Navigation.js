@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { StyleSheet } from "react-native";
+import { StyleSheet, Image } from "react-native";
 import { Drawer } from 'react-native-drawer-layout';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -82,6 +82,7 @@ import WastageChart from '../Screens/WastageChart';
 import EighteenKarat from '../Screens/KaratScreens/EighteenKarat';
 import TwentyKarat from '../Screens/KaratScreens/TwentyKarat';
 import TwentytwokaratScreen from '../Screens/KaratScreens/TwentytwoKaratScreen';
+import ConfirmOrder from '../Screens/ConfirmOrder';
 
 const Stack = createNativeStackNavigator();
 
@@ -135,7 +136,7 @@ const Navigation = () => {
                             options={{
                                 title: '',
                                 headerShown: false,
-                                headerStyle: { backgroundColor: 'black' },
+                                headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }}
@@ -163,7 +164,7 @@ const Navigation = () => {
                             component={OTP}
                             options={{
                                 title: '',
-                                headerStyle: { backgroundColor: 'black' },
+                                headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }}
@@ -174,7 +175,7 @@ const Navigation = () => {
                             component={Cart}
                             options={{
                                 title: 'My Cart',
-                                headerStyle: { backgroundColor: 'black' },
+                                headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
@@ -186,7 +187,7 @@ const Navigation = () => {
                             component={SingleProduct}
                             options={{
                                 title: 'Product',
-                                headerStyle: { backgroundColor: 'black' },
+                                headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
@@ -196,7 +197,7 @@ const Navigation = () => {
                             component={Product}
                             options={{
                                 title: 'Products',
-                                headerStyle: { backgroundColor: 'black' },
+                                headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
@@ -206,7 +207,7 @@ const Navigation = () => {
                             component={AboutUs}
                             options={{
                                 title: 'About us',
-                                headerStyle: { backgroundColor: 'black' },
+                                headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
@@ -231,10 +232,10 @@ const Navigation = () => {
                                 headerShown: true,
                                 headerStyle: { backgroundColor: '#bc9954' },
                                 headerTintColor: 'black',
-                                headerTitleStyle: { color: 'black' }
+                                headerTitleStyle: { color: 'black' },
+
+                                headerTitleStyle: { flex: 1, textAlign: 'center' },
                             }} />
-
-
 
                         <Stack.Screen
                             name="privacypolicy"
@@ -242,7 +243,7 @@ const Navigation = () => {
                             options={{
                                 title: 'Privacy Policy',
                                 headerShown: true,
-                                headerStyle: { backgroundColor: 'black' },
+                                headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
@@ -253,7 +254,7 @@ const Navigation = () => {
                             options={{
                                 title: 'Terms and Conditions',
                                 headerShown: true,
-                                headerStyle: { backgroundColor: 'black' },
+                                headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
@@ -263,9 +264,11 @@ const Navigation = () => {
                             component={WelcomeScreen}
                             options={{
                                 title: '',
-                                headerShown: true, headerStyle: { backgroundColor: 'black' },
+                                headerShown: true,
+                                headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
-                                headerTitleStyle: { color: '#bc9954' }
+                                headerTitleStyle: { color: '#bc9954' },
+                                tabBarStyle: { display: "none" },
                             }} />
 
                         <Stack.Screen
@@ -273,7 +276,7 @@ const Navigation = () => {
                             component={ServiceAvailable}
                             options={{
                                 title: 'Service Available',
-                                headerShown: true, headerStyle: { backgroundColor: 'black' },
+                                headerShown: true, headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
@@ -283,7 +286,7 @@ const Navigation = () => {
                             component={ViewProfile}
                             options={{
                                 title: 'Profile',
-                                headerShown: true, headerStyle: { backgroundColor: 'black' },
+                                headerShown: true, headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
@@ -292,7 +295,7 @@ const Navigation = () => {
                             component={PriceList}
                             options={{
                                 title: 'Wastage Chart',
-                                headerShown: true, headerStyle: { backgroundColor: 'black' },
+                                headerShown: true, headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
@@ -301,7 +304,7 @@ const Navigation = () => {
                             component={GoldScreen}
                             options={{
                                 title: 'Gold Coins',
-                                headerShown: true, headerStyle: { backgroundColor: 'black' },
+                                headerShown: true, headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
@@ -310,7 +313,7 @@ const Navigation = () => {
                             component={SilverScreen}
                             options={{
                                 title: 'Silver Coins',
-                                headerShown: true, headerStyle: { backgroundColor: 'black' },
+                                headerShown: true, headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
@@ -319,18 +322,28 @@ const Navigation = () => {
                             component={StatesDropDown}
                             options={{
                                 title: '',
-                                headerShown: true, headerStyle: { backgroundColor: 'black' },
+                                headerShown: true, headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
 
                         <Stack.Screen
-                            name="thankyou"
+                            name="thank"
                             component={Thankyou}
                             options={{
-                                title: '',
+                                title: 'Thank You',
                                 headerShown: true,
-                                headerStyle: { backgroundColor: 'black' },
+                                headerStyle: { backgroundColor: '#181818' },
+                                headerTintColor: '#bc9954',
+                                headerTitleStyle: { color: '#bc9954' }
+                            }} />
+                        <Stack.Screen
+                            name="confimrorder"
+                            component={ConfirmOrder}
+                            options={{
+                                title: 'Confirm Order',
+                                headerShown: true,
+                                headerStyle: { backgroundColor: '#181818' },
                                 headerTintColor: '#bc9954',
                                 headerTitleStyle: { color: '#bc9954' }
                             }} />
@@ -879,9 +892,9 @@ const Navigation = () => {
                             options={{
                                 title: '18KT',
                                 headerShown: true,
-                                headerStyle: { backgroundColor: 'black' },
-                                headerTintColor: '#bc9954',
-                                headerTitleStyle: { color: '#bc9954' }
+                                headerStyle: { backgroundColor: '#bc9954' },
+                                headerTintColor: 'black',
+                                headerTitleStyle: { color: 'black' }
                             }} />
 
                         <Stack.Screen
@@ -890,9 +903,9 @@ const Navigation = () => {
                             options={{
                                 title: '20KT',
                                 headerShown: true,
-                                headerStyle: { backgroundColor: 'black' },
-                                headerTintColor: '#bc9954',
-                                headerTitleStyle: { color: '#bc9954' }
+                                headerStyle: { backgroundColor: '#bc9954' },
+                                headerTintColor: 'black',
+                                headerTitleStyle: { color: 'black' }
                             }} />
 
                         <Stack.Screen
@@ -901,9 +914,9 @@ const Navigation = () => {
                             options={{
                                 title: '22KT',
                                 headerShown: true,
-                                headerStyle: { backgroundColor: 'black' },
-                                headerTintColor: '#bc9954',
-                                headerTitleStyle: { color: '#bc9954' }
+                                headerStyle: { backgroundColor: '#bc9954' },
+                                headerTintColor: 'black',
+                                headerTitleStyle: { color: 'black' }
                             }} />
                     </>
                 ) : null

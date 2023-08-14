@@ -101,6 +101,5 @@ const styles = StyleSheet.create({
         width: "98%",
         alignContent: "center",
         marginLeft: moderateScale(4.5),
-
     }
 });
